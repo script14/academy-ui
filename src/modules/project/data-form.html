@@ -1,0 +1,8 @@
+<template>
+  <input-form submit.delegate="tChange()" cancel.delegate="tChange()">
+    <datepicker value.bind="data.datepicker" label="datepicker" error="hi error" change.delegate="tChange()" options.bind="tOptions"></datepicker>
+    <dropdown value.bind="data.dropdown" label="dropdown" error="hi error" change.delegate="tChange()" options.bind="tOptions"
+      items.bind="dropdownItems" key="value"></dropdown>
+    <textbox value.bind="data.textbox" label="textbox" error="hi error" change.delegate="tChange()" options.bind="tOptions"></textbox>
+  </input-form>
+</template>

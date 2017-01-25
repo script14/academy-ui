@@ -3,7 +3,6 @@ import '../styles/styles.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-import authConfig from '../auth-config';
 
 // comment out if you don't want a Promise polyfill (remove also from webpack.common.js)
 import * as Bluebird from 'bluebird';
@@ -11,19 +10,9 @@ Bluebird.config({ warnings: false });
 
 export async function configure(aurelia) {
   aurelia.use
+    .feature('components')
     .standardConfiguration()
-    .developmentLogging()
-    .plugin('aurelia-api', config => {
-      // Register an authentication hosts 
-      config
-        .registerEndpoint('auth', 'https://dl-auth-api-dev.mybluemix.net/v1/')
-        .registerEndpoint('master', 'https://dl-core-api-dev.mybluemix.net/v1/master/')
-        .registerEndpoint('public-api', 'http://myapi.org/public-api');
-    })
-    /* configure aurelia-authentication */
-    .plugin('aurelia-authentication', baseConfig => {
-      baseConfig.configure(authConfig);
-    });
+    .developmentLogging();
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');

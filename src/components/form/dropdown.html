@@ -1,0 +1,8 @@
+<template>
+  <require from="./_layout"></require>
+  <layout options.bind="options" label.bind="label" error.bind="error">
+    <select value.bind="value" class="form-control" matcher.bind="_matcher">
+        <option repeat.for="item of items" model.bind="item">${item[_selector.text]}</option>
+      </select>
+  </layout>
+</template>
