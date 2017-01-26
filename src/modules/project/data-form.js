@@ -3,6 +3,8 @@ import { bindable } from "aurelia-framework";
 export class DataForm {
   @bindable data;
   @bindable error;
+
+  collectionHeaders = ["Id","Name"];
   dropdownItems = [{
     value: 1,
     text: "One"
@@ -40,17 +42,22 @@ export class DataForm {
   get dataLoader() {
     return (start) => fetch("https://api.github.com/users")
       .then(response => response.json())
-      // .then(result => {
-      //   return result.map(item => {
-      //     item.toString = function () {
-      //       return `${this.login}`;
-      //     }
-      //     return item;
-      //   })
-      // });
+    // .then(result => {
+    //   return result.map(item => {
+    //     item.toString = function () {
+    //       return `${this.login}`;
+    //     }
+    //     return item;
+    //   })
+    // });
   }
   tChange() {
     console.log(this.data);
     console.log("tChange");
+  }
+
+  addNewItem() {
+    this.data.items.push(
+      { id: 4, name: "Four" }, )
   }
 }

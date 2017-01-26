@@ -1,9 +1,5 @@
-import { bindable, bindingMode, containerless, inject, LogManager, computedFrom } from "aurelia-framework";
-import { _Control } from "../_control";
-import $ from 'jquery';
-
-let logger = LogManager.getLogger('autocomplete');
-const CACHE_DURATION = 60000;
+import { bindable, bindingMode, containerless, inject, computedFrom } from "aurelia-framework";
+import { _Control } from "../_control"; 
 
 function startsWith(str, start) {
   // console.log(str);

@@ -1,4 +1,4 @@
-<template> 
+<template>
   <input-form submit.delegate="tChange()" cancel.delegate="tChange()">
     <datepicker value.bind="data.datepicker" label="datepicker" error="hi error" change.delegate="tChange()" options.bind="tOptions"></datepicker>
     <dropdown value.bind="data.dropdown" label="dropdown" error="hi error" change.delegate="tChange()" options.bind="tOptions"
@@ -6,5 +6,7 @@
     <textbox value.bind="data.textbox" label="textbox" error="hi error" change.delegate="tChange()" options.bind="tOptions"></textbox>
     <autocomplete value.bind="data.autocomplete" label="autocomplete" error="hi error" change.delegate="tChange()" options.bind="tOptions"
       loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
+
+    <collection items.bind="data.items" headers.bind="collectionHeaders" add.delegate="addNewItem()" template="modules/project/member"></collection>
   </input-form>
 </template>
