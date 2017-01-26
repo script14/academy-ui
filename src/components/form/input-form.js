@@ -13,7 +13,6 @@ export class InputForm {
   @computedFrom("element.delegatedCallbacks")
   get visibility() {
     var callbacks = this.element.delegatedCallbacks;
-    console.log(callbacks)
     return {
       submit: callbacks && callbacks.submit,
       cancel: callbacks && callbacks.cancel

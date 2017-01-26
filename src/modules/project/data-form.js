@@ -36,15 +36,19 @@ export class DataForm {
     value: "value",
     text: "text",
   }
-  // tOptions = {
-  //   label: {
-  //     length: 2,
-  //     align: "right"
-  //   },
-  //   control: {
-  //     length: 3
-  //   }
-  // }
+
+  get dataLoader() {
+    return (start) => fetch("https://api.github.com/users")
+      .then(response => response.json())
+      // .then(result => {
+      //   return result.map(item => {
+      //     item.toString = function () {
+      //       return `${this.login}`;
+      //     }
+      //     return item;
+      //   })
+      // });
+  }
   tChange() {
     console.log(this.data);
     console.log("tChange");
