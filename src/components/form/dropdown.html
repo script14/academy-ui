@@ -1,8 +1,9 @@
 <template>
   <require from="./_layout"></require>
   <layout options.bind="options" label.bind="label" error.bind="error">
-    <select value.bind="value" class="form-control" matcher.bind="_matcher">
+    <select value.bind="value" class="form-control" matcher.bind="_matcher" if.bind="!readOnly">
         <option repeat.for="item of items" model.bind="item">${item[_selector.text]}</option>
-      </select>
+    </select>
+    <p class="form-control-static" if.bind="readOnly">${value}</p>
   </layout>
 </template>

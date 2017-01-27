@@ -4,19 +4,16 @@ export class DataForm {
   @bindable data;
   @bindable error;
 
-  collectionHeaders = ["Id","Name"];
+  collectionHeaders = ["Id", "Name", "user"];
+
   dropdownItems = [{
-    value: 1,
-    text: "One"
+    value: 1, text: "One"
   }, {
-    value: 2,
-    text: "Two"
+    value: 2, text: "Two"
   }, {
-    value: 3,
-    text: "Three"
+    value: 3, text: "Three"
   }, {
-    value: 4,
-    text: "Four"
+    value: 4, text: "Four"
   }]
 
   constructor() {
@@ -34,6 +31,28 @@ export class DataForm {
     },
     control: {
       length: 3
+    },
+    value: "value",
+    text: "text",
+  }
+  xOptions = {
+    label: {
+      length: 2,
+      align: "right"
+    },
+    control: {
+      length: 10
+    },
+    value: "value",
+    text: "text",
+  }
+  x2Options = {
+    label: {
+      length: 2,
+      align: "right"
+    },
+    control: {
+      length: 2
     },
     value: "value",
     text: "text",
@@ -59,5 +78,13 @@ export class DataForm {
   addNewItem() {
     this.data.items.push(
       { id: 4, name: "Four" }, )
+  }
+  removeItem(event) {
+    var item = event.detail;
+    console.log(item);
+  }
+  select(event) {
+    var item = event.detail;
+    console.log(item);
   }
 }

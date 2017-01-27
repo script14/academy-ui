@@ -1,5 +1,6 @@
 import { bindable, bindingMode, containerless, inject, computedFrom } from "aurelia-framework";
-import { _Control } from "../_control"; 
+import { _Control } from "../_control";
+import dispatchCustomEvent from "../../../lib/dispatch-custom-event";
 
 function startsWith(str, start) {
   // console.log(str);
@@ -9,29 +10,14 @@ function startsWith(str, start) {
   return true;
 }
 
-function dispatchCustomEvent(event_name, element, data) {
-  let anEvent;
-  if (window.CustomEvent) {
-    anEvent = new CustomEvent(event_name, {
-      detail: data,
-      bubbles: true
-    });
-  } else {
-    anEvent = document.createEvent('CustomEvent');
-    anEvent.initCustomEvent(event_name, true, true, {
-      detail: data
-    });
-  }
-  element.dispatchEvent(anEvent);
-}
-
 @containerless()
 @inject(Element)
 export class Autocomplete extends _Control {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) value; 
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
   // dropdown properties
@@ -53,8 +39,13 @@ export class Autocomplete extends _Control {
 
   constructor(element) {
     super(element);
-  }
+  } 
 
+  valueChanged()
+  {
+    this.bind(); 
+  }
+  
   bind() {
     this._ignoreInputChange = true;
     this._input = this._getSuggestionText(this.value);
@@ -116,7 +107,7 @@ export class Autocomplete extends _Control {
     this._ignoreInputChange = true;
     this._input = this._getSuggestionText(suggestion);
     if (this.value) {
-      dispatchCustomEvent("selected", this.element, this.value);
+      dispatchCustomEvent("select", this.element, this.value);
       this._hideSuggestions();
     }
   }

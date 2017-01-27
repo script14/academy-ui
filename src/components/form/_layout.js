@@ -10,7 +10,7 @@ export class _Layout {
 
   constructor(element) {
     this.element = element;
-  }
+  } 
 
   @computedFrom("label")
   get hasLabel() {
@@ -34,6 +34,7 @@ export class _Layout {
   get _control() {
     var _options = !this.options || !this.options.control ? {} : this.options.control;
     _options.length = _options.length || 4;
+    console.log(_options)
     return _options;
   }
 

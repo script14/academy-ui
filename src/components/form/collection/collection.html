@@ -1,19 +1,37 @@
 <template>
+  <require from="./collection.css"></require>
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <button class="right" click.delegate="onadd($event)">Add</button>
+    <div class="panel-heading" if.bind="title">
+      ${title}
     </div>
     <table class="table table-hover">
       <thead if.bind="headers && headers.length">
         <tr>
           <th repeat.for="header of headers">${header}</th>
+          <th><button click.delegate="onadd($event)">Add</button></th>
         </tr>
       </thead>
       <tbody>
-        <tr if.bind="!template" repeat.for="item of items">
+        <!--<tr if.bind="template" repeat.for="item of items">
           <td>${item}</td>
+          <td><button click.delegate="onremove(item, $event)">remove</button></td>
+        </tr>-->
+
+        <!--no template-->
+        <tr if.bind="!itemTemplate">
+          <td colspan="${headers.length + 1}">
+            <div class="alert alert-error"> cannot display data without template.</div>
+          </td>
         </tr>
-        <tr if.bind="template" repeat.for="item of items" as-element="compose" view="${template}.html" view-model="${template}" model.bind="item"></tr>
+
+        <tr if.bind="itemTemplate" repeat.for="item of items" as-element="compose" view="${itemTemplate}.html" view-model="${itemTemplate}" model.bind="items[$index]"></tr>
+
+        <!--No data to display-->
+        <tr if.bind="!items || !items.length">
+          <td colspan="${headers.length + 1}">
+            <div class="alert alert-info"> No data found.</div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

@@ -1,12 +1,47 @@
 <template>
-  <input-form submit.delegate="tChange()" cancel.delegate="tChange()">
+  <!--<input-form submit.delegate="tChange()" cancel.delegate="tChange()">
     <datepicker value.bind="data.datepicker" label="datepicker" error="hi error" change.delegate="tChange()" options.bind="tOptions"></datepicker>
     <dropdown value.bind="data.dropdown" label="dropdown" error="hi error" change.delegate="tChange()" options.bind="tOptions"
       items.bind="dropdownItems" key="value"></dropdown>
     <textbox value.bind="data.textbox" label="textbox" error="hi error" change.delegate="tChange()" options.bind="tOptions"></textbox>
     <autocomplete value.bind="data.autocomplete" label="autocomplete" error="hi error" change.delegate="tChange()" options.bind="tOptions"
       loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
+    <autocomplete value.bind="data.autocomplete" label="autocomplete" error="hi error" change.delegate="tChange()" options.bind="tOptions"
+      loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>-->
+    <layout label="layout" options.bind="xOptions">
+      <autocomplete value.bind="data.autocomplete" error="hi error" change.delegate="tChange()" options.bind="x2Options"
+        loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
+      <autocomplete value.bind="data.autocomplete" error="hi error" change.delegate="tChange()" options.bind="x2Options"
+        loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
+    </layout>
+    <!--<collection items.bind="data.items" headers.bind="collectionHeaders" add.delegate="addNewItem()" remove.delegate="removeItem($event)"
+      header-template="modules/project/header" item-template="modules/project/member-item"></collection>-->
 
-    <collection items.bind="data.items" headers.bind="collectionHeaders" add.delegate="addNewItem()" template="modules/project/member"></collection>
+    <!--<table class="table table-hover">
+      <tbody> 
+        <tr repeat.for="item of data.items"> 
+          <td>
+            <autocomplete value.bind="data.items[$index]" loader.bind="dataLoader" error="field error" key="id" text="login" template="modules/project/user"
+              select.delegate="select($event)"></autocomplete>
+          </td>
+          <td>
+            <textbox value.bind="item.name"></textbox>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-hover">
+      <tbody> 
+        <tr repeat.for="item of data.items"> 
+          <td>
+            <autocomplete value.bind="data.items[$index]" loader.bind="dataLoader" error="field error" key="id" text="login" template="modules/project/user"
+              select.delegate="select($event)"></autocomplete>
+          </td>
+          <td>
+            <textbox value.bind="item.name"></textbox>
+          </td>
+        </tr>
+      </tbody>
+    </table>-->
   </input-form>
 </template>
