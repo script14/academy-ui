@@ -17,3 +17,8 @@ td .alert{
   padding: 30px;
   text-align: center;
 }
+
+.collection .panel-body
+{
+  padding:8px;
+}

@@ -3,7 +3,7 @@ import { _Control } from "./_control";
 
 @containerless()
 @inject(Element)
-export class Textbox extends _Control {
+export class Numeric extends _Control {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
@@ -11,10 +11,17 @@ export class Textbox extends _Control {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
-  // textbox properties
+  // numeric properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) placeholder;
-  
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) step;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) min;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) max;
   constructor(element) {
     super(element);
+  }
+
+  bind()
+  {
+    this.value = this.value || 0;
   }
 }

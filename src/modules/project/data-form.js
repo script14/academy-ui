@@ -24,60 +24,28 @@ export class DataForm {
       return item;
     })
   }
-  dOptions = {
+
+  controlOptions = {
     label: {
       length: 2,
       align: "right"
     },
     control: {
-      length: 3
-    },
-    value: "value",
-    text: "text",
-  }
-  xOptions = {
-    label: {
-      length: 2,
-      align: "right"
-    },
-    control: {
-      length: 10
-    },
-    value: "value",
-    text: "text",
-  }
-  x2Options = {
-    label: {
-      length: 2,
-      align: "right"
-    },
-    control: {
-      length: 2
-    },
-    value: "value",
-    text: "text",
+      length: 6
+    }
   }
 
   get dataLoader() {
     return (start) => fetch("https://api.github.com/users")
       .then(response => response.json())
-    // .then(result => {
-    //   return result.map(item => {
-    //     item.toString = function () {
-    //       return `${this.login}`;
-    //     }
-    //     return item;
-    //   })
-    // });
   }
-  tChange() {
+
+  valueChanged(event) {
     console.log(this.data);
-    console.log("tChange");
   }
 
   addNewItem() {
-    this.data.items.push(
-      { id: 4, name: "Four" }, )
+    this.data.items.push({})
   }
   removeItem(event) {
     var item = event.detail;
@@ -85,6 +53,8 @@ export class DataForm {
   }
   select(event) {
     var item = event.detail;
-    console.log(item);
+    this.data.items.push({
+      user: item
+    })
   }
 }

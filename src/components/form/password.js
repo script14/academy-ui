@@ -3,7 +3,7 @@ import { _Control } from "./_control";
 
 @containerless()
 @inject(Element)
-export class Textbox extends _Control {
+export class Password extends _Control {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
@@ -11,9 +11,9 @@ export class Textbox extends _Control {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
-  // textbox properties
+  // password properties 
   @bindable({ defaultBindingMode: bindingMode.twoWay }) placeholder;
-  
+
   constructor(element) {
     super(element);
   }

@@ -1,19 +1,11 @@
 export class MemberItem {
-  activate(data) {
-    this.data = data;
+  activate(context) {
+    this.data = context.data;
+    this.error = context.error;
   }
 
   get dataLoader() {
     return (start) => fetch("https://api.github.com/users")
       .then(response => response.json())
-  }
-
-  bind(ctx) {
-    this.ctx = ctx;    
-  }
-
-  select(event) {
-    this.data = event.detail;
-    console.log(this.data)
   }
 }

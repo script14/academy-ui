@@ -1,8 +1,11 @@
 <template>
   <require from="./collection.css"></require>
-  <div class="panel panel-default">
+  <div class="panel panel-default collection">
     <div class="panel-heading" if.bind="title">
-      ${title}
+      <h4>${title}</h4>
+    </div>
+    <div class="panel-body">
+      <slot name="body"></slot>
     </div>
     <table class="table table-hover">
       <thead if.bind="headers && headers.length">
@@ -24,7 +27,8 @@
           </td>
         </tr>
 
-        <tr if.bind="itemTemplate" repeat.for="item of items" as-element="compose" view="${itemTemplate}.html" view-model="${itemTemplate}" model.bind="items[$index]"></tr>
+        <tr if.bind="itemTemplate" repeat.for="item of data" as-element="compose" view="${itemTemplate}.html" view-model="${itemTemplate}"
+          model.bind="data[$index]"></tr>
 
         <!--No data to display-->
         <tr if.bind="!items || !items.length">

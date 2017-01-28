@@ -11,6 +11,8 @@ export class Datepicker extends _Control {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
+  // datepicker properties
+
   constructor(element) {
     super(element);
   }

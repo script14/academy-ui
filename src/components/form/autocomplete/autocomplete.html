@@ -2,10 +2,9 @@
   <require from="./autocomplete.css"></require>
   <require from="./suggestion-text"></require>
   <require from="../_layout"></require>
-  <require from="../set-attribute"></require>
   <layout options.bind="options" label.bind="label" error.bind="error">
     <div class="autocomplete-container" if.bind="!readOnly">
-      <input type="text" class="form-control autocomplete-input ${additionalClass}" autocomplete="off" value.bind="_input & debounce:250"
+      <input type="search" class="form-control autocomplete-input ${additionalClass}" autocomplete="off" value.bind="_input & debounce:250"
         placeholder.bind="placeholder" focus.trigger="_showSuggestions()" blur.trigger="_hideSuggestions()" />
       <div class="list-group autocomplete-suggestion" if.bind="_suggestionVisible || _isLoading">
         <a class="list-group-item" if.bind="_isLoading">Loading...</a>

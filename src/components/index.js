@@ -6,7 +6,12 @@ export function configure(config) {
     './form/datepicker',
     './form/dropdown',
     './form/input-form',
+    './form/multiline',
+    './form/numeric',
+    './form/password',
+    './form/range',
     './form/textbox',
+    './form/timepicker',
     './form/_layout'
   );
 }

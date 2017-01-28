@@ -10,7 +10,12 @@ export class _Layout {
 
   constructor(element) {
     this.element = element;
-  } 
+  }
+
+  bind(context)
+  {
+    // console.log(context);
+  }
 
   @computedFrom("label")
   get hasLabel() {
@@ -33,8 +38,7 @@ export class _Layout {
   @computedFrom("options.control")
   get _control() {
     var _options = !this.options || !this.options.control ? {} : this.options.control;
-    _options.length = _options.length || 4;
-    console.log(_options)
+    _options.length = _options.length || (!this.hasLabel ? 12 : 12 - this._label.length);
     return _options;
   }
 
@@ -43,7 +47,7 @@ export class _Layout {
     var style = {
       group: "form-group",
       label: "",
-      control: "col-sm-12"
+      control: `col-sm-${this._control.length}`
     };
 
     if (this.hasError)

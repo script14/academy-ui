@@ -20,7 +20,7 @@ export class Autocomplete extends _Control {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
-  // dropdown properties
+  // autocomplete properties
   @bindable loader = []; // can be either array of suggestions or function returning Promise resolving to such array
   @bindable minLength = 1; // min length of input to start search and suggest 
   @bindable template = null; // template to display a suggestion - if none string value of suggestion is shown 

@@ -1,47 +1,45 @@
 <template>
-  <!--<input-form submit.delegate="tChange()" cancel.delegate="tChange()">
-    <datepicker value.bind="data.datepicker" label="datepicker" error="hi error" change.delegate="tChange()" options.bind="tOptions"></datepicker>
-    <dropdown value.bind="data.dropdown" label="dropdown" error="hi error" change.delegate="tChange()" options.bind="tOptions"
-      items.bind="dropdownItems" key="value"></dropdown>
-    <textbox value.bind="data.textbox" label="textbox" error="hi error" change.delegate="tChange()" options.bind="tOptions"></textbox>
-    <autocomplete value.bind="data.autocomplete" label="autocomplete" error="hi error" change.delegate="tChange()" options.bind="tOptions"
-      loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
-    <autocomplete value.bind="data.autocomplete" label="autocomplete" error="hi error" change.delegate="tChange()" options.bind="tOptions"
-      loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>-->
-    <layout label="layout" options.bind="xOptions">
-      <autocomplete value.bind="data.autocomplete" error="hi error" change.delegate="tChange()" options.bind="x2Options"
-        loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
-      <autocomplete value.bind="data.autocomplete" error="hi error" change.delegate="tChange()" options.bind="x2Options"
-        loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
-    </layout>
-    <!--<collection items.bind="data.items" headers.bind="collectionHeaders" add.delegate="addNewItem()" remove.delegate="removeItem($event)"
-      header-template="modules/project/header" item-template="modules/project/member-item"></collection>-->
+  <input-form submit.delegate="valueChanged($event)" cancel.delegate="valueChanged($event)">
+    <div class="row">
+      <div class="col-sm-5 col-sm-push-1">
+        <timepicker value.bind="data.timepicker" label="timepicker" change.delegate="valueChanged($event)" options.bind="controlOptions"></timepicker>
+        <datepicker value.bind="data.datepicker" label="datepicker" change.delegate="valueChanged($event)" options.bind="controlOptions"></datepicker>
+        <dropdown value.bind="data.dropdown" label="dropdown" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          items.bind="dropdownItems" key="value"></dropdown>
+        <autocomplete value.bind="data.autocomplete" label="autocomplete" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
+        <textbox value.bind="data.textbox" label="textbox" change.delegate="valueChanged($event)" options.bind="controlOptions"></textbox>
+        <password value.bind="data.password" label="password" change.delegate="valueChanged($event)" options.bind="controlOptions"></password>
+        <numeric value.bind="data.numeric" label="numeric" change.delegate="valueChanged($event)" options.bind="controlOptions"></numeric>
+        <range value.bind="data.range" label="range" change.delegate="valueChanged($event)" options.bind="controlOptions" step="5"
+          min="-200" max="200"></range>
+      </div>
 
-    <!--<table class="table table-hover">
-      <tbody> 
-        <tr repeat.for="item of data.items"> 
-          <td>
-            <autocomplete value.bind="data.items[$index]" loader.bind="dataLoader" error="field error" key="id" text="login" template="modules/project/user"
-              select.delegate="select($event)"></autocomplete>
-          </td>
-          <td>
-            <textbox value.bind="item.name"></textbox>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="table table-hover">
-      <tbody> 
-        <tr repeat.for="item of data.items"> 
-          <td>
-            <autocomplete value.bind="data.items[$index]" loader.bind="dataLoader" error="field error" key="id" text="login" template="modules/project/user"
-              select.delegate="select($event)"></autocomplete>
-          </td>
-          <td>
-            <textbox value.bind="item.name"></textbox>
-          </td>
-        </tr>
-      </tbody>
-    </table>-->
+      <div class="col-sm-5">
+        <timepicker value.bind="data.timepicker" label="timepicker" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          read-only="true"></timepicker>
+        <datepicker value.bind="data.datepicker" label="datepicker" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          read-only="true"></datepicker>
+        <dropdown value.bind="data.dropdown" label="dropdown" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          items.bind="dropdownItems" key="value" read-only="true"></dropdown>
+        <autocomplete value.bind="data.autocomplete" label="autocomplete" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          loader.bind="dataLoader" key="id" text="login" template="modules/project/user" read-only="true"></autocomplete>
+        <textbox value.bind="data.textbox" label="textbox" change.delegate="valueChanged($event)" options.bind="controlOptions" read-only="true"></textbox>
+        <password value.bind="data.password" label="password" change.delegate="valueChanged($event)" options.bind="controlOptions"
+          read-only="true"></password>
+        <numeric value.bind="data.numeric" label="numeric" change.delegate="valueChanged($event)" options.bind="controlOptions" read-only="true"></numeric>
+        <range value.bind="data.range" label="range" change.delegate="valueChanged($event)" options.bind="controlOptions" read-only="true"></range>
+      </div>
+    </div> 
+
+    <collection items.bind="data.items" errors.bind="error.items" headers.bind="collectionHeaders" add.delegate="addNewItem()"
+      remove.delegate="removeItem($event)" header-template="modules/project/header" item-template="modules/project/member-item"
+      title="Members">
+      <div slot="body">
+        <autocomplete value.bind="data.autocomplete" label="search user: " change.delegate="valueChanged($event)" select.delegate="select($event)"
+          options.bind="controlOptions" loader.bind="dataLoader" key="id" text="login" template="modules/project/user"></autocomplete>
+      </div>
+    </collection>
+
   </input-form>
 </template>

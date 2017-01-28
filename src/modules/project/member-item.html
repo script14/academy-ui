@@ -1,10 +1,10 @@
 <template>
-  <td>${console.log($parent.items[$index])}</td>
+  <td>${data.user.id}</td>
   <td>
-    <autocomplete value.bind="data" loader.bind="dataLoader" error="field error" key="id" text="login" template="modules/project/user" select.delegate="select($event)"></autocomplete>
+    <autocomplete value.bind="data.user" loader.bind="dataLoader" error.bind="error.user" key="id" text="login" template="modules/project/user"></autocomplete>
   </td>
   <td>
-    <!--<textbox value.bind="data.avatar_url"></textbox>-->
+    <textbox value.bind="data.user.avatar_url"></textbox>
   </td>
   <td><button click.delegate="onremove(data, $event)">remove</button></td>
 </template>
