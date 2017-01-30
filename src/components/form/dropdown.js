@@ -39,4 +39,28 @@ export class Dropdown extends _Control {
     result = option[this._selector.key] === current[this._selector.key];
     return result;
   }
+  
+  _getSuggestionText(suggestion) {
+    if (!suggestion)
+      return "";
+    else if (typeof suggestion === "string")
+      return suggestion;
+    else if (typeof suggestion === "object" && this.text) {
+      return suggestion[this.text];
+    }
+    else
+      return suggestion.toString();
+  }
+
+  _getSuggestionKey(suggestion) {
+    if (!suggestion)
+      return null;
+    else if (typeof suggestion === "string")
+      return suggestion;
+    else if (typeof suggestion === "object" && this.key) {
+      return suggestion[this.key];
+    }
+    else
+      return suggestion;
+  }
 }

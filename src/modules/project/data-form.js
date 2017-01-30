@@ -4,6 +4,9 @@ export class DataForm {
   @bindable data;
   @bindable error;
 
+  @bindable submit;
+  @bindable cancel;
+
   collectionHeaders = ["Id", "Name", "user"];
 
   dropdownItems = [{

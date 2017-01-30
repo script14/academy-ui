@@ -1,11 +1,13 @@
 <template>
   <form class="form-horizontal">
-    <h3>Title</h3>
+    <h3 if.bind="title">${title}</h3>
     <hr/>
     <slot></slot> 
     <div class="btn-group pull-right">
       <button class="btn btn-default" click.delegate="oncancel($event)" if.one-way="visibility.cancel">Cancel</button>
-      <button class="btn btn-success" click.delegate="onsubmit($event)" if.one-way="visibility.submit">Save</button>
+      <button class="btn btn-primary" click.delegate="onedit($event)" if.one-way="visibility.edit">Edit</button>
+      <button class="btn btn-success" click.delegate="onsave($event)" if.one-way="visibility.save">Save</button>
+      <button class="btn btn-danger" click.delegate="ondelete($event)" if.one-way="visibility.delete">Delete</button>
     </div>
   </form>
 </template>

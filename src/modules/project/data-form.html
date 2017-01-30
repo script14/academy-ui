@@ -1,5 +1,5 @@
 <template>
-  <input-form submit.delegate="valueChanged($event)" cancel.delegate="valueChanged($event)">
+  <input-form save.delegate="valueChanged($event)" cancel.delegate="valueChanged($event)">
     <div class="row">
       <div class="col-sm-5 col-sm-push-1">
         <timepicker value.bind="data.timepicker" label="timepicker" change.delegate="valueChanged($event)" options.bind="controlOptions"></timepicker>

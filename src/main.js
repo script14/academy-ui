@@ -3,15 +3,32 @@ import '../styles/styles.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
+import appConfig from "./config/app-config";
 
 // comment out if you don't want a Promise polyfill (remove also from webpack.common.js)
 import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: false });
-
 export async function configure(aurelia) {
   aurelia.use
     .feature('components')
     .standardConfiguration()
+    .plugin("aurelia-api", config => {
+
+      var auth = appConfig.endpoints.auth;//"https://dl-auth-api-dev.mybluemix.net/v1/"; 
+      var core = appConfig.endpoints.core;//"https://dl-core-api-dev.mybluemix.net/v1/";
+
+      config.registerEndpoint('auth', auth);
+      config.registerEndpoint('core', core);
+    })
+    .plugin("aurelia-authentication", baseConfig => {
+      baseConfig.configure(appConfig.auth);
+    })
+    .plugin('aurelia-dialog', config => {
+      config.useDefaults();
+      config.settings.lock = true;
+      config.settings.centerHorizontalOnly = false;
+      config.settings.startingZIndex = 5;
+    })
     .developmentLogging();
 
   // Uncomment the line below to enable animation.
