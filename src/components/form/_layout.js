@@ -37,7 +37,7 @@ export class _Layout {
   @computedFrom("options.control")
   get _control() {
     const defaultLength = 4;
-    var _options = !this.options || !this.options.control ? {} : this.options.control;
+    var _options = !this.options || !this.options.control ? {} : this.options.control; 
     _options.length = _options.length || (!this.hasLabel ? 12 - this._label.length >= defaultLength ? defaultLength : 12 - this._label.length : defaultLength);
     return _options;
   }

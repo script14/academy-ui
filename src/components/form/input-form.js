@@ -16,16 +16,15 @@ export class InputForm {
   @bindable save;
   @bindable edit;
 
-  @computedFrom("element.delegatedCallbacks")
-  get visibility() {
-    var visibility = {
+  @computedFrom("cancel", "delete", "save", "edit")
+  get buttons() {
+    var buttons = {
       cancel: this.cancel && true,
       delete: this.delete && true,
       edit: this.edit && true,
       save: this.save && true
-    }
-    console.log(this)
-    return visibility;
+    } 
+    return buttons;
   }
 
   oncancel(event) {

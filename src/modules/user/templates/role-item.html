@@ -6,5 +6,5 @@
   <td>
     ${role.description}
   </td>
-  <td><button click.delegate="onremove(data, $event)">remove</button></td>
+  <td if.bind="!options.readOnly"><button click.delegate="onremove(data, $event)">remove</button></td>
 </template>

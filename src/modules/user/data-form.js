@@ -14,6 +14,11 @@ export class DataForm {
   @bindable save;
   @bindable edit;
 
+  roleColumns = [
+    { header: "Code", value: "code" },
+    { header: "Name", value: "name" },
+    { header: "Description", value: "description" },
+  ]
   get roleLoader() {
     return (start) => {
       const resource = 'roles';
@@ -39,5 +44,13 @@ export class DataForm {
   roleSelected(event) {
     var role = event.detail;
     this.data.roles.push(role)
+  }
+
+  get addRole() {
+    return (event) => console.log(event);
+  }
+
+  get removeRole() {
+    return (event) => console.log(event);
   }
 } 

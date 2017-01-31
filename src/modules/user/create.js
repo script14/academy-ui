@@ -22,7 +22,6 @@ export class Create {
 
   get save() {
     return (event) => {
-      // console.log(this.data);
       this.service.create(this.data)
         .then(result => {
           this.list();
