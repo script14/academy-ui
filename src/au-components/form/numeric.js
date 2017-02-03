@@ -1,9 +1,10 @@
-import { bindable, bindingMode, containerless, inject, computedFrom } from "aurelia-framework";
+import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
 import { _Control } from "./_control";
 
 @containerless()
+@customElement("au-numeric")
 @inject(Element)
-export class Password extends _Control {
+export class Numeric extends _Control {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
@@ -11,10 +12,16 @@ export class Password extends _Control {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
-  // password properties 
+  // numeric properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) placeholder;
-
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) step;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) min;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) max;
   constructor(element) {
     super(element);
+  }
+
+  bind() {
+    this.value = this.value || 0;
   }
 }

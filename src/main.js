@@ -10,7 +10,7 @@ import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: false });
 export async function configure(aurelia) {
   aurelia.use
-    .feature('components')
+    .feature('au-components')
     .standardConfiguration()
     .plugin("aurelia-api", config => {
 

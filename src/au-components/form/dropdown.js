@@ -1,7 +1,8 @@
-import { bindable, bindingMode, containerless, inject, computedFrom } from "aurelia-framework";
+import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
 import { _Control } from "./_control";
 
 @containerless()
+@customElement("au-dropdown")
 @inject(Element)
 export class Dropdown extends _Control {
   // control properties
@@ -39,7 +40,7 @@ export class Dropdown extends _Control {
     result = option[this._selector.key] === current[this._selector.key];
     return result;
   }
-  
+
   _getSuggestionText(suggestion) {
     if (!suggestion)
       return "";

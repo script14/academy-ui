@@ -1,18 +1,18 @@
 <template>
   <require from="./profile"></require>
-  <input-form title.bind="title" cancel.bind="cancel" edit.bind="edit" save.bind="save" delete.bind="delete">
-    <textbox label="Username" value.bind="data.username" error.bind="error.username" read-only.bind="(readOnly || isEdit)"></textbox>
-    <password label="Password" value.bind="data.password" error.bind="error.password" read-only.bind="readOnly"></password>
+  <au-input-form title.bind="title" cancel.bind="cancel" edit.bind="edit" save.bind="save" delete.bind="delete">
+    <au-textbox label="Username" value.bind="data.username" error.bind="error.username" read-only.bind="(readOnly || isEdit)"></au-textbox>
+    <au-password label="Password" value.bind="data.password" error.bind="error.password" read-only.bind="readOnly"></au-password>
     <profile data.bind="data.profile" error.bind="error.profile" read-only.bind="readOnly"></profile>
 
-    <collection items.bind="data.roles" errors.bind="error.roles" columns.bind="roleColumns" add.bind="addRole" remove.bind="removeRole"
+    <au-collection items.bind="data.roles" errors.bind="error.roles" columns.bind="roleColumns" add.bind="addRole" remove.bind="removeRole"
       title="Roles" read-only.bind="readOnly" 
       header-template="modules/user/templates/role-header"
       item-template="modules/user/templates/role-item">
       <div slot="body">
-        <autocomplete label="search role: " select.delegate="roleSelected($event)" options.bind="controlOptions" loader.bind="roleLoader"
-          placeholder="search role to assign" key="code" text="name" template="modules/user/templates/role"></autocomplete>
+        <au-autocomplete label="search role: " select.delegate="roleSelected($event)" options.bind="controlOptions" loader.bind="roleLoader"
+          placeholder="search role to assign" key="code" text="name" template="modules/user/templates/role"></au-autocomplete>
       </div>
-    </collection>
-  </input-form>
+    </au-collection>
+  </au-input-form>
 </template>

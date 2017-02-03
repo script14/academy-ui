@@ -1,8 +1,9 @@
-import { bindable, bindingMode, noView, inject, computedFrom, children } from "aurelia-framework";
+import { bindable, bindingMode, noView, inject, computedFrom, children, customElement } from "aurelia-framework";
 import { BindingEngine } from 'aurelia-binding';
 import dispatchCustomEvent from "../../../lib/dispatch-custom-event";
 
 @inject(Element, BindingEngine)
+@customElement("au-collection")
 export class Collection {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) items;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) errors;
@@ -43,7 +44,7 @@ export class Collection {
     this.errors = this.errors || [];
     this.data = this.data || [];
     this.columns = this.columns || [];
-    this.buildData(); 
+    this.buildData();
 
     let subscription = this.bindingEngine.collectionObserver(this.items)
       .subscribe(splices => {

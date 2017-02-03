@@ -2,7 +2,7 @@ import { bindable, bindingMode, noView, inject, computedFrom, customElement, con
 
 @inject(Element)
 @containerless()
-@customElement("layout")
+@customElement("au-layout")
 export class _Layout {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;

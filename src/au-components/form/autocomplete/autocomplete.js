@@ -1,4 +1,4 @@
-import { bindable, bindingMode, containerless, inject, computedFrom } from "aurelia-framework";
+import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
 import { _Control } from "../_control";
 import dispatchCustomEvent from "../../../lib/dispatch-custom-event";
 
@@ -11,11 +11,12 @@ function startsWith(str, start) {
 }
 
 @containerless()
+@customElement("au-autocomplete")
 @inject(Element)
 export class Autocomplete extends _Control {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) value; 
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
@@ -39,13 +40,12 @@ export class Autocomplete extends _Control {
 
   constructor(element) {
     super(element);
-  } 
-
-  valueChanged()
-  {
-    this.bind(); 
   }
-  
+
+  valueChanged() {
+    this.bind();
+  }
+
   bind() {
     this._ignoreInputChange = true;
     this._input = this._getSuggestionText(this.value);

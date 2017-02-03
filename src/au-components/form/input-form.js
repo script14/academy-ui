@@ -2,7 +2,7 @@ import { bindable, bindingMode, noView, inject, computedFrom, customElement, con
 
 @inject(Element)
 @containerless()
-@customElement("input-form")
+@customElement("au-input-form")
 export class InputForm {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) title;
