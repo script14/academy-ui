@@ -7,7 +7,7 @@ const serviceUri = "accounts";
 export class Service extends RestService {
 
   constructor(http, aggregator, config, api) {
-    super(http, aggregator, config, "auth");
+    super(http, aggregator, config, "core");
   }
 
   search(info) {

@@ -6,15 +6,17 @@ export default {
 
     loginUrl: "authenticate",
     profileUrl: "/me",
-
-    authTokenType: "JWT",
-    accessTokenProp: "data",
+    
+    authHeader: "ACCESS_TOKEN",
+    authTokenType: "",
+    accessTokenProp: "id",
 
     storageChangedReload: true
   },
   endpoints: {
     // auth: "https://academy-auth-webapi-pinkgorilla.c9users.io/v1/",
-    auth: "https://dl-auth-api-dev.mybluemix.net/v1/",
-    core: ""
+    // auth: "https://dl-auth-api-dev.mybluemix.net/v1/",
+    auth: "http://localhost:3000/",
+    core: "http://localhost:3000/api/"
   }
 };

@@ -13,6 +13,6 @@ export class _Control {
   }
 
   bind() {
-    console.log("control:bound");
+    // console.log("control:bound");
   }
 }

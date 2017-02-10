@@ -8,8 +8,8 @@ var _default = {
     loginUrl: "authenticate",
     profileUrl: "/me",
 
-    authTokenType: "JWT",
-    accessTokenProp: "data",
+    authTokenType: "",
+    accessTokenProp: "id",
 
     storageChangedReload: true
   },

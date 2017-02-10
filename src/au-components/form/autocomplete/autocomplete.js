@@ -27,6 +27,7 @@ export class Autocomplete extends _Control {
   @bindable template = null; // template to display a suggestion - if none string value of suggestion is shown 
   @bindable placeholder = ''; // placeholder for input control 
   @bindable filter // function to filter out suggestions
+  @bindable query // query object
   @bindable _input; // input field value;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay }) key;
@@ -81,7 +82,7 @@ export class Autocomplete extends _Control {
     if (Array.isArray(this.loader)) {
       promise = Promise.resolve(this.loader.filter(item => startsWith(this.getSuggestionValue(item), keyword)));
     } else if (typeof this.loader === 'function') {
-      promise = this.loader(keyword);
+      promise = this.loader(keyword, this.query);
     }
     return promise.then(suggestions => {
       this._isLoading = false;
@@ -107,7 +108,7 @@ export class Autocomplete extends _Control {
     this._ignoreInputChange = true;
     this._input = this._getSuggestionText(suggestion);
     if (this.value) {
-      dispatchCustomEvent("select", this.element, this.value);
+      dispatchCustomEvent("change", this.element, this.value);
       this._hideSuggestions();
     }
   }
@@ -118,7 +119,7 @@ export class Autocomplete extends _Control {
     }
   }
 
-  _getSuggestionText(suggestion) {
+  _getSuggestionText(suggestion) { 
     if (!suggestion)
       return "";
     else if (typeof suggestion === "string")

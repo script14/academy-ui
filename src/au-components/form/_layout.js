@@ -12,8 +12,8 @@ export class _Layout {
     this.element = element;
   }
 
-  bind(context) {
-    // console.log(context);
+  bind(context) { 
+    // console.log(this.options);
   }
 
   @computedFrom("label")

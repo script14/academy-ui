@@ -13,6 +13,7 @@ export class Collection {
   @bindable title = null;
   @bindable headerTemplate = null;
   @bindable itemTemplate = null;
+  @bindable footerTemplate = null;
   @bindable columns;
 
   defaultOptions = {
@@ -24,6 +25,7 @@ export class Collection {
   @bindable add;
   @bindable remove;
 
+
   @computedFrom("add", "remove")
   get buttons() {
     var buttons = {
@@ -32,7 +34,6 @@ export class Collection {
     }
     return buttons;
   }
-
 
   constructor(element, bindingEngine) {
     this.element = element;
@@ -44,24 +45,31 @@ export class Collection {
     this.errors = this.errors || [];
     this.data = this.data || [];
     this.columns = this.columns || [];
-    this.buildData();
+    this.buildContext();
 
     let subscription = this.bindingEngine.collectionObserver(this.items)
       .subscribe(splices => {
-        this.buildData();
+        this.buildContext();
       });
   }
 
-  buildData() {
+  buildContext() {
+    this.context = this.context || {};
     this.data = this.items.map((item, index) => {
+      var error = this.error ? this.error[0] : null;
       return {
         data: item,
-        error: this.errors[index],
+        error: error,
         options: {
           readOnly: this.readOnly && true
-        }
+        },
+        context: this.context
       }
     });
+
+    this.context.columns = this.columns;
+    this.context.items = this.data;
+    this.context.options = this.options;
   }
 
   onadd(event) {
