@@ -29,12 +29,8 @@ export class DataForm {
   }
 
   controlOptions = {
-    label: {
-      length: 2,
-      align: "right"
-    },
     control: {
-      length: 6
+      //  length: 0
     }
   }
 

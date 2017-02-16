@@ -1,21 +1,12 @@
-import { bindable, bindingMode, noView, inject, computedFrom } from "aurelia-framework";
+import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework"; 
 
-@inject(Element)
-export class _Control {
+@customElement("au-textbox")
+export class Textbox{
+  // input properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
- 
-  @bindable editorState;
-  @bindable editorValue;
-
-  constructor(element) {
-    this.element = element;
-  }
-
-  bind() {
-    // console.log("control:bound");
-  }
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) placeholder;  
 }

@@ -1,10 +1,10 @@
 import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
-import { _Control } from "./_control";
+import { _Control } from "../_control";
 
 @containerless()
-@customElement("au-textbox")
+@customElement("au-timepicker")
 @inject(Element)
-export class Textbox extends _Control {
+export class Timepicker extends _Control {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
@@ -12,8 +12,7 @@ export class Textbox extends _Control {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
 
-  // textbox properties
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) placeholder;
+  // timepicker properties
 
   constructor(element) {
     super(element);
