@@ -2,8 +2,7 @@ import { bindable, bindingMode, containerless, inject, computedFrom, customEleme
 import numeral from 'numeral';
 var STATE = require("../_state");
 
-@customElement("au-range")
-@inject(Element)
+@customElement("au-range") 
 export class Range {
   // input properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;

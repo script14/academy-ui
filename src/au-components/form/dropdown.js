@@ -1,25 +1,18 @@
 import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
-import { _Control } from "./_control";
 
-@containerless()
 @customElement("au-dropdown")
-@inject(Element)
-export class Dropdown extends _Control {
+export class Dropdown {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
+  @bindable options;
 
   // dropdown properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) items;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) key;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) text;
-
-  constructor(element) {
-    super(element);
-  }
 
   @computedFrom("key", "text")
   get _selector() {

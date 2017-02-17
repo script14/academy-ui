@@ -1,17 +1,15 @@
 import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
-import { _Control } from "./_control";
 var STATE = require("./_state");
 
 @customElement("au-multiline")
-@inject(Element)
-export class Multiline extends _Control {
+export class Multiline {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) placeholder;
+  @bindable options;
 
   @bindable editorState = STATE.VIEW;
   @bindable editorValue;
@@ -21,11 +19,7 @@ export class Multiline extends _Control {
 
   _defaultOptions = {
     selectOnFocus: true
-  }
-
-  constructor(element) {
-    super(element);
-  }
+  } 
 
   // multiline properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) rows;

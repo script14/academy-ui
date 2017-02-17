@@ -1,7 +1,6 @@
 import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
 
-@customElement("au-password")
-@inject(Element)
+@customElement("au-password") 
 export class Password {
   // input properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;

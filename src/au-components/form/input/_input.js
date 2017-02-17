@@ -1,14 +1,14 @@
 import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
-import { _Control } from "../_control";
+import dispatchCustomEvent from "../../../lib/dispatch-custom-event";
 var STATE = require("../_state");
 
 @containerless()
 @customElement("au-input")
 @inject(Element)
-export class _Input extends _Control {
+export class _Input {
   // control properties
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) value;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) error;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) readOnly;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) options;
@@ -18,16 +18,14 @@ export class _Input extends _Control {
   @bindable editorState = STATE.VIEW;
   @bindable editorValue;
   @bindable type;
-
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) keydown;
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) stateChanged;
+  element;
+   
+  constructor(component) {
+    this.component = component;
+  }
 
   _defaultOptions = {
     selectOnFocus: true
-  }
-
-  constructor(element) {
-    super(element);
   }
 
   bind() {
@@ -42,7 +40,6 @@ export class _Input extends _Control {
 
   onFocus(event) {
     this.editorState = STATE.EDIT;
-    this.control = event.target;
   }
 
   editorValueChanged(newValue) {
@@ -50,18 +47,10 @@ export class _Input extends _Control {
   }
 
   editorStateChanged(newValue) {
-    if (this.stateChanged)
-      this.stateChanged(this);
-      
-    if (this.control && this.editorState === STATE.EDIT && this._options.selectOnFocus) {
-      this.control.select();
-    }
-  }
+    dispatchCustomEvent("statechange", this.component, this);
 
-  _onkeydown(event) {
-    if (this.keydown)
-      return this.keydown(event);
-    else
-      return true;
-  }
+    if (this.element && this.editorState === STATE.EDIT && this._options.selectOnFocus) {
+      this.element.select();
+    }
+  } 
 }
