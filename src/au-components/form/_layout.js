@@ -50,7 +50,7 @@ export class _Layout {
     return _options;
   }
 
-  @computedFrom("hasLabel", "hasError", "_label.length", "_control.length")
+  @computedFrom("hasLabel", "hasError", "_label.length", "_label.align", "_control.length")
   get _style() {
     var style = {
       group: "form-group",
@@ -61,10 +61,10 @@ export class _Layout {
     if (this.hasError)
       style.group += ` has-error`;
     if (this.hasLabel)
-      style.label = `col-sm-${this._label.length} control-label text-${this._label.align}`;
+      style.label = `col-sm-${this._label.length} text-${this._label.align} control-label`;
 
     style.control = `col-sm-${this._control.length}`;
-    // console.log(`${this.label} : ${JSON.stringify(this._label)} : ${JSON.stringify(style)} : ${this.hasLabel}`)
+    console.log(`${this.label} : ${JSON.stringify(this._label)} : ${JSON.stringify(style)} : ${this.hasLabel}`)
     return style;
   }
 }

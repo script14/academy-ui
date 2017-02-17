@@ -2,17 +2,29 @@ import { bindable, computedFrom } from "aurelia-framework";
 
 export class Autocomplete {
   value;
-  label = "autocomplete"
+  label = "autocomplete";
   stringValue;
+  
   options = {
     label: {
-      length: 3,
+      length: 4,
       align: "left"
     },
     control: {
-      length: 4
+      length: 8
     }
   };
+
+  settingOptions = {
+    label: {
+      length: 4,
+      align: "right"
+    },
+    control: {
+      length: 8
+    }
+  }
+  alignments = ["left", "right"];
 
   @computedFrom("options.label.length")
   get controlMaxLength() {

@@ -1,23 +1,26 @@
 <template>
   <div class="row">
-    <div class="col-md-6">
-      <au-autocomplete value.bind="value" label.bind="label" change.delegate="changeCallback($event)" options.bind="options" loader.bind="loader"
-        key="id" text="login" template="modules/sample/autocomplete/item-template"></au-autocomplete>
-        <br/>
-        <br/>
-        <br/>
-        <p>
-          <div class="well">
-            <code style="word-wrap:break-word">${stringValue}</code>
-          </div>
-        </p>
+    <div class="col-md-4 col-md-push-4">
+      <au-input-form title="autocomplete demo">
+        <au-autocomplete value.bind="value" label.bind="label" error.bind="error" change.delegate="changeCallback($event)" options.bind="options" loader.bind="loader"
+          key="id" text="login" template="modules/sample/autocomplete/item-template"></au-autocomplete>          
+          <p>
+            <div class="well">
+              <code style="word-wrap:break-word">${stringValue}</code>
+            </div>
+          </p>
+        </au-input-form>
     </div>
-    <div class="col-md-6">
-      <h3>settings</h3>
-      <au-textbox label="label" value.bind="label"></au-textbox>
-      <au-range label="options.label.length" value.bind="options.label.length" change.delegate="changed()" max.bind="labelMaxLength"></au-range>
-      <au-textbox label="options.label.align" value.bind="options.label.align"></au-textbox>
-      <au-range label="options.control.length" value.bind="options.control.length" change.delegate="changed()" max.bind="controlMaxLength"></au-range>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-push-4">
+      <au-input-form title="settings">
+      <au-textbox label="error" value.bind="error" options.bind="settingOptions"></au-textbox>      
+      <au-textbox label="label" value.bind="label" options.bind="settingOptions"></au-textbox>      
+      <au-range label="options.label.length" value.bind="options.label.length" change.delegate="changed()" max.bind="labelMaxLength" options.bind="settingOptions"></au-range>
+      <au-dropdown label="options.label.align" value.bind="options.label.align" options.bind="settingOptions" items.bind="alignments"></au-dropdown>
+      <au-range label="options.control.length" value.bind="options.control.length" change.delegate="changed()" max.bind="controlMaxLength" options.bind="settingOptions"></au-range>
+      </au-input-form>
     </div>
   </div>
 </template>

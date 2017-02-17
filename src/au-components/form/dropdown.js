@@ -1,6 +1,8 @@
 import { bindable, bindingMode, containerless, inject, computedFrom, customElement } from "aurelia-framework";
 
+// @containerless()
 @customElement("au-dropdown")
+@inject(Element)
 export class Dropdown {
   // control properties
   @bindable({ defaultBindingMode: bindingMode.twoWay }) label;
@@ -13,6 +15,10 @@ export class Dropdown {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) items;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) key;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) text;
+
+  constructor(element) {
+    this.component = element;
+  }
 
   @computedFrom("key", "text")
   get _selector() {
@@ -56,5 +62,19 @@ export class Dropdown {
     }
     else
       return suggestion;
+  }
+
+  // changeCallback(event) {
+  //   console.log(`changeCallback: ${JSON.stringify(this.value)}`);
+  //   console.log(event)
+  //   if (event.isTrusted)
+  //     event.stopPropagation();
+  // }
+
+  valueChanged(e) {
+    console.log("valueChanged");
+    // var event = new Event("change");
+    // if (this.component)
+    //   this.component.dispatchEvent(event);
   }
 }
