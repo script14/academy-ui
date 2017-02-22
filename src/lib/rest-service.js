@@ -1,14 +1,17 @@
 import { inject } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
-import { EventAggregator } from 'aurelia-event-aggregator';
-import { Config } from "aurelia-api";
 
-@inject(HttpClient, EventAggregator, Config, "")
+import { Config } from "aurelia-api";
+import { Container } from 'aurelia-dependency-injection';
+import { EventAggregator } from 'aurelia-event-aggregator';
+
 export class RestService {
 
-  constructor(HttpClient, EventAggregator, config, api) {
-    this.endpoint = config.getEndpoint(api);
-    this.eventAggregator = EventAggregator;
+  constructor(endpoint, resource) {
+    var config = Container.instance.get(Config);
+    this.endpoint = config.getEndpoint(endpoint);
+    this.eventAggregator = Container.instance.get(EventAggregator);
+    this.resource = resource;
   }
 
   _publish(promise) {
@@ -24,10 +27,10 @@ export class RestService {
     }
   }
 
-  list(endpoint, info) {
+  list(info) {
     var _info = Object.assign({}, info);
     delete _info.order;
-    var promise = this.endpoint.find(endpoint, _info);
+    var promise = this.endpoint.find(this.resource, _info);
     this._publish(promise);
     return promise
       .catch(e => {
@@ -43,8 +46,8 @@ export class RestService {
       });
   }
 
-  get(endpoint) {
-    var promise = this.endpoint.find(endpoint)
+  get(id) {
+    var promise = this.endpoint.find(`${this.resource}\\${id}`)
     this._publish(promise);
     return promise
       .catch(e => {
@@ -60,8 +63,8 @@ export class RestService {
       });
   }
 
-  post(endpoint, data) {
-    var promise = this.endpoint.post(endpoint, data);
+  post(data) {
+    var promise = this.endpoint.post(this.resource, data);
     this._publish(promise);
     return promise
       .catch(e => {
@@ -80,8 +83,8 @@ export class RestService {
       })
   }
 
-  put(endpoint, data) {
-    var promise = this.endpoint.update(endpoint, null, data);
+  put(data) {
+    var promise = this.endpoint.update(this.resource, null, data);
     this._publish(promise);
     return promise
       .catch(e => {
@@ -100,8 +103,8 @@ export class RestService {
       })
   }
 
-  delete(endpoint, data) {
-    var promise = this.endpoint.destroy(endpoint);
+  delete(id) {
+    var promise = this.endpoint.destroy(`${this.resource}\\${id}`);
     this._publish(promise);
     return promise
       .catch(e => {

@@ -5,7 +5,7 @@ export function configure(config) {
     './form/collection/collection',
     './form/dropdown',
     './form/multiline',
-    './form/_layout',
+    './form/_layout', 
     './form/input-form',
     './form/input/datepicker',
     './form/input/numeric',

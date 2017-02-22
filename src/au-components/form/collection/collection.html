@@ -30,8 +30,8 @@
           <!--default-->
           <tr if.bind="!itemTemplate && columns && columns.length" repeat.for="item of data">
             <td repeat.for="column of columns">
-              <textbox value.bind="item.data[column.value]" error.bind="item.error[column.value]" read-only.bind="item.options.readOnly"
-                options.bind="defaultOptions"></textbox>
+              <au-textbox value.bind="item.data[column.value]" error.bind="item.error[column.value]" read-only.bind="item.options.readOnly"
+                options.bind="defaultOptions"></au-textbox>
             </td>
             <td if.bind="!readOnly && buttons.remove"><button click.delegate="onremove(data[$index].data)">Remove</button></td>
           </tr>

@@ -1,20 +1,22 @@
-import { bindable } from "aurelia-framework";
+import { bindable, inject } from "aurelia-framework";
+import { RestService } from "../../lib/rest-service";
 
-export class create {
+export class Create {
   @bindable data;
   @bindable error;
 
-  async activate() {
-    this.error = {
-      items: [
-        { user: "inital data: user required" }
-      ]
-    };
+  constructor() {
+    this.service = new RestService("core", "projects");
+  }
 
-    this.data = {
-      items: [
-        { user: null }
-      ]
-    };
+  cancelCallback(event) {
+    console.log(this.service);
+  }
+  deleteCallback(event) {
+    console.log(this);
+  }
+  saveCallback(event) {
+    this.service.post(this.data);
+    // console.log(this);
   }
 }

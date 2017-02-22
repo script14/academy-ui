@@ -1,10 +1,10 @@
 import { bindable, computedFrom } from "aurelia-framework";
 
 export class Autocomplete {
-  value;
+  x;
   label = "autocomplete";
   stringValue;
-  
+
   options = {
     label: {
       length: 4,
@@ -37,12 +37,13 @@ export class Autocomplete {
   }
 
   get loader() {
-    return (keyword) => fetch("https://api.github.com/users")
-      .then(response => response.json())
+    return (keyword) => {
+      return fetch("https://api.github.com/users").then(response => response.json())
+    }
   }
 
   changeCallback($event) {
-    this.stringValue = JSON.stringify(this.value);
+    this.stringValue = JSON.stringify(this.x);
   }
   changed() {
     // console.log(JSON.stringify(this.options))
