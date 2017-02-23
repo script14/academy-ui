@@ -2,7 +2,7 @@ import {dynamicOptions, inject} from 'aurelia-framework';
 
 @dynamicOptions
 @inject(Element)
-export class InputOptionsCustomAttribute {
+export class DynamicAttributeCustomAttribute {
   constructor(element){
     this.element = element;
   }
