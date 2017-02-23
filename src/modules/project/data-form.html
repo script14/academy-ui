@@ -1,9 +1,7 @@
 <template>
   <au-input-form with.bind="context">
-    <template replace-part="body">
-      <au-textbox label="code" value.bind="data.code" error.bind="error.code"></au-textbox>
-      <au-textbox label="name" value.bind="data.name" error.bind="error.name"></au-textbox>
-      <au-multiline label="description" value.bind="data.description" error.bind="error.description"></au-multiline>
-    </template>
+    <au-textbox label="code" value.bind="data.code" error.bind="error.code"></au-textbox>
+    <au-textbox label="name" value.bind="data.name" error.bind="error.name"></au-textbox>
+    <au-multiline label="description" value.bind="data.description" error.bind="error.description"></au-multiline> 
   </au-input-form>
 </template>

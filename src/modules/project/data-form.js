@@ -13,4 +13,14 @@ export class DataForm {
     this.editCallback = this.context.editCallback;
     this.saveCallback = this.context.saveCallback; 
   }
+
+  cb()
+  {
+    console.log(this);
+  }
+  hello()
+  {
+    console.log(this);
+  }
+  
 }

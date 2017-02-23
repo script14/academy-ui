@@ -16,6 +16,11 @@ export class Dropdown {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) key;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) text;
 
+  bind() {
+    console.log("dropdown.bind")
+    console.log(this.options)
+  }
+  
   constructor(element) {
     this.component = element;
   }

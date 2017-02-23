@@ -1,6 +1,6 @@
 import { bindable, computedFrom } from "aurelia-framework";
 
-export class Autocomplete {
+export class Index {
   x;
   label = "autocomplete";
   stringValue;
@@ -8,33 +8,12 @@ export class Autocomplete {
   options = {
     label: {
       length: 4,
-      align: "left"
-    },
-    control: {
-      length: 8
-    }
-  };
-
-  settingOptions = {
-    label: {
-      length: 4,
       align: "right"
     },
     control: {
       length: 8
     }
-  }
-  alignments = ["left", "right"];
-
-  @computedFrom("options.label.length")
-  get controlMaxLength() {
-    return 12 - this.options.label.length;
-  }
-
-  @computedFrom("options.control.length")
-  get labelMaxLength() {
-    return 12 - this.options.control.length;
-  }
+  }; 
 
   get loader() {
     return (keyword) => {

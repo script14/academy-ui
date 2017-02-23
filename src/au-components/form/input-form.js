@@ -36,7 +36,7 @@ export class InputForm {
   }
 
   bind(context) {
-    this.context = context;
+    this.context = context; 
   }
 
   oncancel(event) {

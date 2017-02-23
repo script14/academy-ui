@@ -9,14 +9,16 @@ export class Create {
     this.service = new RestService("core", "projects");
   }
 
+  created(owner, self)
+  {
+    this.data = {}
+  }
+
   cancelCallback(event) {
     console.log(this.service);
   }
-  deleteCallback(event) {
-    console.log(this);
-  }
   saveCallback(event) {
-    this.service.post(this.data);
-    // console.log(this);
+    // this.service.post(this.data);
+    console.log(this);
   }
 }

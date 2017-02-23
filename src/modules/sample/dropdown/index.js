@@ -1,17 +1,10 @@
 import { bindable, computedFrom } from "aurelia-framework";
 
-export class Dropdown {
+export class Index {
   value;
-  @bindable value2;
-  value2Changed()
-  {
-    console.log("value2Changed")
-  }
-  changeCallback2($event) {
-    console.log(this.value2)
-  }
-  label = "dropdown";
   stringValue;
+
+  label = "dropdown";
   options = {
     label: {
       length: 4,
@@ -21,33 +14,17 @@ export class Dropdown {
       length: 8
     }
   };
+
+  constructor() {
+    this.context = this;
+  }
+
   objects = [
     { "code": "ITEM001", "name": "ITEM 001", "description": "some description for ITEM 001" },
     { "code": "ITEM002", "name": "ITEM 002", "description": "some description for ITEM 002" },
     { "code": "ITEM003", "name": "ITEM 003", "description": "some description for ITEM 003" },
     { "code": "ITEM004", "name": "ITEM 004", "description": "some description for ITEM 004" }
   ];
-  
-  settingOptions = {
-    label: {
-      length: 4,
-      align: "right"
-    },
-    control: {
-      length: 8
-    }
-  }
-  alignments = ["left", "right"];
-
-  @computedFrom("options.label.length")
-  get controlMaxLength() {
-    return 12 - this.options.label.length;
-  }
-
-  @computedFrom("options.control.length")
-  get labelMaxLength() {
-    return 12 - this.options.control.length;
-  }
 
   get loader() {
     return (keyword) => fetch("https://api.github.com/users")
@@ -56,13 +33,9 @@ export class Dropdown {
 
   changeCallback($event) {
     console.log(this.value)
-    // this.stringValue = JSON.stringify(this.value);
-  }
-  changed() {
-    // console.log(JSON.stringify(this.options))
   }
 
- 
+
   get _selector() {
     var selector = { key: "code", text: "name" };
     // if (this.key)
