@@ -15,16 +15,23 @@ export class Index {
     }
   }; 
 
-  get loader() {
+  get loader() { 
     return (keyword) => {
       return fetch("https://api.github.com/users").then(response => response.json())
     }
   }
 
+  // selectCallback($event) {
+  //   console.log("selectCallback");
+  //   var selected = this.x;
+  //   console.log(selected);
+  //   this.x = null;
+  //   this.stringValue = JSON.stringify(selected);
+  // } 
   changeCallback($event) {
-    this.stringValue = JSON.stringify(this.x);
-  }
-  changed() {
-    // console.log(JSON.stringify(this.options))
-  }
+    // console.log(this.value);
+    var selected = this.x;
+    // this.x = null;
+    this.stringValue = JSON.stringify(selected);
+  } 
 }

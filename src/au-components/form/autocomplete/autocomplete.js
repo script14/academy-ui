@@ -154,7 +154,7 @@ export class Autocomplete {
   }
 
   _highlightSuggestion(suggestion) {
-    if (suggestion) {
+    if (this.list && suggestion) {
       let item = $(this.list.children[this._index]);
       let suggestionList = $(this.list);
       if (item && item.position()) {

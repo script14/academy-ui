@@ -17,8 +17,8 @@ export class Dropdown {
   @bindable({ defaultBindingMode: bindingMode.twoWay }) text;
 
   bind() {
-    console.log("dropdown.bind")
-    console.log(this.options)
+    // console.log("dropdown.bind")
+    // console.log(this.options)
   }
   
   constructor(element) {
@@ -77,7 +77,7 @@ export class Dropdown {
   // }
 
   valueChanged(e) {
-    console.log("valueChanged");
+    // console.log("valueChanged");
     // var event = new Event("change");
     // if (this.component)
     //   this.component.dispatchEvent(event);
