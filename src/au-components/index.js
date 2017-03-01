@@ -12,6 +12,7 @@ export function configure(config) {
     './form/input/password',
     './form/input/range',
     './form/input/textbox',
-    './form/input/timepicker'
+    './form/input/timepicker',
+    './table/table'
   );
 }

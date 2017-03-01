@@ -7,7 +7,7 @@ export class App {
       { route: 'login',  name: 'sign-in', moduleId: './modules/login/index', nav: true, title: 'Sign-In' },
       { route: 'users',  name: 'users', moduleId: './modules/user/index', nav: true, title: 'Users' },
       { route: 'samples',  name: 'samples', moduleId: './modules/sample/index', nav: true, title: 'Samples' },
-      { route: 'projects',  name: 'projects', moduleId: './modules/project/create', nav: true, title: 'Project' }
+      { route: 'projects',  name: 'projects', moduleId: './modules/project/index', nav: true, title: 'Project' }
     ]);
 
     this.router = router;

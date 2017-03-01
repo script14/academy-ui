@@ -18,7 +18,7 @@ export class Create {
     console.log(this.service);
   }
   saveCallback(event) {
-    // this.service.post(this.data);
-    console.log(this);
+    this.service.post(this.data);
+    // console.log(this);
   }
 }

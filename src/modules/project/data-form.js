@@ -2,7 +2,8 @@ import { bindable, containerless } from "aurelia-framework";
 
 @containerless()
 export class DataForm {
-
+  @bindable title;
+  
   bind(context) {
     this.context = context;
     this.data = this.context.data;
