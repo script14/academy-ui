@@ -11,6 +11,7 @@
         <span>${avatar_url}</span>
       </template>
     </au-autocomplete>
+    <au-autocomplete value.bind="x" label.bind="label" read-only.bind="true" error.bind="error" change.delegate="changeCallback($event)" options.bind="options" loader.bind="loader" key="id" text="login" template="modules/sample/autocomplete/item-template"></au-autocomplete>
     
     <p>
       <div class="well">

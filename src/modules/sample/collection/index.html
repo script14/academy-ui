@@ -1,7 +1,20 @@
-<template> 
+<template>
   <au-input-form title="dropdown demo">
-     <au-collection></au-collection>
-     <au-collection columns.bind="columns"></au-collection>
-     <au-collection columns.bind="columns" items.bind="people"></au-collection>
+    <au-collection></au-collection>
+    <au-collection columns.bind="columns"></au-collection>
+    <au-collection columns.bind="columns" items.bind="people" item-template="modules/sample/collection/list-item"></au-collection>
+    <au-collection columns.bind="columns" items.bind="people">
+      <template replace-part="item"> 
+        <td>
+          <au-textbox value.bind="data.name" error.bind="error.name"></au-textbox>
+        </td>
+        <td>
+          <au-numeric value.bind="age" error.bind="error.age" read-only.bind="name.length < 1"></au-numeric>
+        </td>
+        <td>
+          <au-textbox value.bind="email" error.bind="error.email"></au-textbox>
+        </td>
+      </template>
+    </au-collection>
   </au-input-form>
 </template>
