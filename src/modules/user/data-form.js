@@ -3,54 +3,34 @@ import { Container } from 'aurelia-dependency-injection';
 import { Config } from "aurelia-api"
 
 export class DataForm {
-  @bindable readOnly = false;
-  @bindable data;
-  @bindable error;
-
   @bindable title;
-
-  @bindable cancel;
-  @bindable delete;
-  @bindable save;
-  @bindable edit;
+  @bindable readOnly;
 
   roleColumns = [
     { header: "Code", value: "code" },
     { header: "Name", value: "name" },
     { header: "Description", value: "description" },
   ]
-  get roleLoader() {
-    return (start) => {
-      const resource = 'roles';
-      var config = Container.instance.get(Config);
-      var endpoint = config.getEndpoint("auth");
-      return endpoint.find(resource)
-        .then(results => {
-          return results.data.map(role => {
-            // role.toString = function () {
-            //   return [this.code, this.name]
-            //     .filter((item, index) => {
-            //       return item && item.toString().trim().length > 0;
-            //     }).join(" - ");
-            // }
-            return role;
-          })
-        });
-    };
-    // return (start) => fetch("https://api.github.com/users")
-    //   .then(response => response.json())
+  genderOptions = ["male", "female"];
+
+  constructor() {
+    // this.backlogService = new RestService("core", "backlogs");
   }
 
-  roleSelected(event) {
-    var role = event.detail;
-    this.data.roles.push(role)
+  async bind(context) {
+    this.context = context;
+    this.data = this.context.data;
+    this.data.profile = this.data.profile || {};
+    this.error = this.context.error;
+
+    this.cancelCallback = this.context.cancelCallback;
+    this.deleteCallback = this.context.deleteCallback;
+    this.editCallback = this.context.editCallback;
+    this.saveCallback = this.context.saveCallback;
   }
 
-  get addRole() {
-    return (event) => console.log(event);
-  }
-
-  get removeRole() {
-    return (event) => console.log(event);
+  @computedFrom("data.id")
+  get isEdit() {
+    return (this.data.id || '').toString() !== '';
   }
 } 

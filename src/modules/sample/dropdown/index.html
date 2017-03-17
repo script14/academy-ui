@@ -7,11 +7,14 @@
           </select>-->
     <au-dropdown value.bind="value" label.bind="label" error.bind="error" change.delegate="changeCallback($event)" options.bind="options"
       loader.bind="loader" items.bind="objects" key="code" text="name"></au-dropdown>
-      <p>
-        <div class="well">
-          <code style="word-wrap:break-word">${stringValue}</code>
-        </div>
-      </p>
-      <generic-settings label.two-way="label" error.two-way="error" options.two-way="options"></generic-settings> 
+
+    <au-dropdown value.bind="svalue" label.bind="label" error.bind="error" change.delegate="changeCallback($event)" options.bind="options"
+      loader.bind="loader" items.bind="strings"></au-dropdown>
+    <p>
+      <div class="well">
+        <code style="word-wrap:break-word">${stringValue}</code>
+      </div>
+    </p>
+    <generic-settings label.two-way="label" error.two-way="error" options.two-way="options"></generic-settings>
   </au-input-form>
 </template>

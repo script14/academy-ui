@@ -18,108 +18,99 @@ export class RestService {
     this.eventAggregator.publish('httpRequest', promise);
   }
 
-  _parseResult(result) {
-    if (result.error) {
-      return Promise.reject(result.error);
-    }
-    else {
-      return Promise.resolve(result.data)
-    }
-  }
-
-  list(info) {
-    var _info = Object.assign({}, info);
-    delete _info.order;
-    var promise = this.endpoint.find(this.resource, _info);
+  count(filter) {
+    var __filter = Object.assign({}, filter);
+    var promise = this.endpoint.find(`${this.resource}/count`, __filter);
     this._publish(promise);
     return promise
-      .catch(e => {
-        this._publish(promise);
-        return e.json().then(result => {
-          if (result.error)
-            return Promise.resolve(result);
-        });
-      })
       .then((result) => {
         this._publish(promise);
         return Promise.resolve(result);
-      });
-  }
-
-  get(id) {
-    var promise = this.endpoint.find(`${this.resource}\\${id}`)
-    this._publish(promise);
-    return promise
+      })
       .catch(e => {
         this._publish(promise);
-        return e.json().then(result => {
-          if (result.error)
-            return Promise.resolve(result);
-        });
+        throw e;
       })
+  }
+
+  list(filter) {
+    var __filter = Object.assign({}, filter);
+    var promise = this.endpoint.find(this.resource, __filter);
+    this._publish(promise);
+    return promise
       .then((result) => {
         this._publish(promise);
-        return this._parseResult(result);
+        return Promise.resolve(result);
+      })
+      .catch(e => {
+        this._publish(promise);
+        throw e;
+      })
+  }
+
+  get(id, filter) {
+    var promise = this.endpoint.findOne(this.resource, id, filter);
+    this._publish(promise);
+    return promise
+      .then((result) => {
+        this._publish(promise);
+        console.log("get:completed")
+        return Promise.resolve(result);
+      })
+      .catch(e => {
+        this._publish(promise);
+        throw e;
       });
   }
 
-  post(data) {
-    var promise = this.endpoint.post(this.resource, data);
+  post(data, resource) {
+    var promise = this.endpoint.post(resource || this.resource, data);
     this._publish(promise);
     return promise
-      .catch(e => {
-        this._publish(promise);
-        return e.json().then(result => {
-          if (result.error)
-            return Promise.resolve(result);
-        });
-      })
       .then(result => {
         this._publish(promise);
         if (result)
-          return this._parseResult(result);
+          return Promise.resolve(result);
         else
           return Promise.resolve({});
+      })
+      .catch(e => {
+        this._publish(promise);
+        throw e;
       })
   }
 
-  put(data) {
-    var promise = this.endpoint.update(this.resource, null, data);
+  put(id, data) {
+    var promise = this.endpoint.update(this.resource, id, data, null);
     this._publish(promise);
     return promise
-      .catch(e => {
-        this._publish(promise);
-        return e.json().then(result => {
-          if (result.error)
-            return Promise.resolve(result);
-        });
-      })
       .then(result => {
         this._publish(promise);
         if (result)
-          return this._parseResult(result);
+          return Promise.resolve(result);
         else
           return Promise.resolve({});
+      })
+      .catch(e => {
+        this._publish(promise);
+        throw e;
       })
   }
 
   delete(id) {
-    var promise = this.endpoint.destroy(`${this.resource}\\${id}`);
+    var promise = this.endpoint.destroy(this.resource, id);
     this._publish(promise);
     return promise
-      .catch(e => {
-        this._publish(promise);
-        return e.json().then(result => {
-          if (result.error)
-            return Promise.resolve(result);
-        });
-      })
       .then(result => {
         this._publish(promise);
         if (result)
-          return this._parseResult(result);
+          return Promise.resolve(result);
         else
           return Promise.resolve({});
+      })
+      .catch(e => {
+        this._publish(promise);
+        throw e;
       })
   }
 }

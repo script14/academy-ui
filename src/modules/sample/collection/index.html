@@ -2,9 +2,19 @@
   <au-input-form title="dropdown demo">
     <au-collection></au-collection>
     <au-collection columns.bind="columns"></au-collection>
-    <au-collection columns.bind="columns" items.bind="people" item-template="modules/sample/collection/list-item"></au-collection>
+    <h3>With Dropdown</h3>
+
+    <!--<au-dropdown value.bind="data.selectedPerson" items.bind="people" key="id" text="email"></au-dropdown>-->
+    <au-autocomplete value.bind="data.selectedPerson" loader.bind="peopleLoader" key="id" text="email"></au-autocomplete>
+
+    <au-collection columns.bind="hobbyColumns" items.bind="data.selectedPerson.hobbies" if.bind="data.selectedPerson"></au-collection>
+
+    <h3>File template</h3>
+    <au-collection columns.bind="columns" items.bind="people" item-template="modules/sample/collection/person-item"></au-collection>
+
+    <h3>Inline template</h3>
     <au-collection columns.bind="columns" items.bind="people">
-      <template replace-part="item"> 
+      <template replace-part="item">
         <td>
           <au-textbox value.bind="data.name" error.bind="error.name"></au-textbox>
         </td>

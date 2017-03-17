@@ -7,7 +7,7 @@ export default {
     loginUrl: "authenticate",
     profileUrl: "/me",
     
-    authHeader: "ACCESS_TOKEN",
+    authHeader: "Authorization",
     authTokenType: "",
     accessTokenProp: "id",
 

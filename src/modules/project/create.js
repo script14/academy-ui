@@ -1,24 +1,39 @@
 import { bindable, inject } from "aurelia-framework";
 import { RestService } from "../../lib/rest-service";
+import { Router } from 'aurelia-router';
+import parseLoopbackError from "../../lib/loopback-error-parser";
 
+@inject(Router)
 export class Create {
   @bindable data;
   @bindable error;
 
-  constructor() {
+  constructor(router) {
     this.service = new RestService("core", "projects");
+    this.router = router;
   }
 
-  created(owner, self)
-  {
+  created(owner, self) {
     this.data = {}
   }
 
   cancelCallback(event) {
-    console.log(this.service);
+    this.__goToList();
   }
+
   saveCallback(event) {
-    this.service.post(this.data);
-    // console.log(this);
+    this.service.post(this.data)
+      .then(result => {
+        this.__goToList();
+      })
+      .catch(parseLoopbackError)
+      .then(error => { 
+        this.error = error;
+      });
+  }
+
+  // Privates
+  __goToList() {
+    this.router.navigateToRoute('list');
   }
 }

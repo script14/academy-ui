@@ -4,6 +4,7 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
 import appConfig from "./config/app-config";
+import { DOM } from 'aurelia-pal';
 
 // comment out if you don't want a Promise polyfill (remove also from webpack.common.js)
 import * as Bluebird from 'bluebird';
@@ -26,8 +27,16 @@ export async function configure(aurelia) {
     .plugin('aurelia-dialog', config => {
       config.useDefaults();
       config.settings.lock = true;
-      config.settings.centerHorizontalOnly = false;
+      config.settings.centerHorizontalOnly = true;
       config.settings.startingZIndex = 5;
+      config.settings.position = function (modalContainer, overlay) {
+        const child = modalContainer.children[0];
+        const vh = Math.max(DOM.querySelectorAll('html')[0].clientHeight, window.innerHeight || 0);
+
+        child.style.marginTop = "50px";//Math.max((vh - child.offsetHeight) / 2, 40) + 'px';
+        child.style.marginBottom = Math.max((vh - child.offsetHeight) / 2, 30) + 'px';
+      }
+      config.settings.enableEscClose = true;
     })
     .developmentLogging();
 

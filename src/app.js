@@ -7,7 +7,11 @@ export class App {
       { route: 'login',  name: 'sign-in', moduleId: './modules/login/index', nav: true, title: 'Sign-In' },
       { route: 'users',  name: 'users', moduleId: './modules/user/index', nav: true, title: 'Users' },
       { route: 'samples',  name: 'samples', moduleId: './modules/sample/index', nav: true, title: 'Samples' },
-      { route: 'projects',  name: 'projects', moduleId: './modules/project/index', nav: true, title: 'Project' }
+      { route: 'projects',  name: 'projects', moduleId: './modules/project/index', nav: true, title: 'Project' },
+      { route: 'backlogs',  name: 'backlogs', moduleId: './modules/backlog/index', nav: true, title: 'Backlog' },
+      { route: 'iterations',  name: 'iterations', moduleId: './modules/iteration/index', nav: true, title: 'Iteration' },
+      { route: 'assignments',  name: 'assignments', moduleId: './modules/assignment/index', nav: true, title: 'Assignment' },
+      { route: 'tasks',  name: 'tasks', moduleId: './modules/task/index', nav: true, title: 'Task' }
     ]);
 
     this.router = router;

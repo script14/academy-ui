@@ -1,7 +1,7 @@
 import { bindable, computedFrom } from "aurelia-framework";
 
 export class Index {
-  value;
+  value = { "code": "ITEM003", "name": "ITEM 003", "description": "some description for ITEM 003" };
   stringValue;
 
   label = "dropdown";
@@ -18,7 +18,9 @@ export class Index {
   constructor() {
     this.context = this;
   }
-
+  svalue = "C";
+  strings = ["A", "B", "C", "D"]
+  
   objects = [
     { "code": "ITEM001", "name": "ITEM 001", "description": "some description for ITEM 001" },
     { "code": "ITEM002", "name": "ITEM 002", "description": "some description for ITEM 002" },

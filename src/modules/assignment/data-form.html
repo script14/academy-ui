@@ -1,0 +1,18 @@
+<template>
+  <au-input-form title.bind="title" with.bind="context">
+
+    <au-autocomplete value.bind="selectedIteration" label="iteration" read-only.bind="readOnly || isEdit" error.bind="error.iterationId"
+      loader.bind="iterationLoader" key="id" text.bind="iterationFormatter">
+    </au-autocomplete>
+
+    <au-autocomplete value.bind="selectedAccount" label="account" read-only.bind="readOnly || isEdit" error.bind="error.accountId"
+      loader.bind="accountLoader" key="id" text="username"></au-autocomplete>
+
+    <au-autocomplete value.bind="selectedTask" label="task" read-only.bind="readOnly || isEdit" error.bind="error.taskId" loader.bind="taskLoader"
+      key="id" text.bind="taskFormatter"></au-autocomplete>
+
+    <au-datepicker label="date" value.bind="data.date" error.bind="error.date" read-only.bind="readOnly"></au-datepicker>
+    <au-multiline label="remark" value.bind="data.remark" error.bind="error.remark" read-only.bind="readOnly"></au-multiline>
+    <au-textbox label="status" value.bind="data.status" error.bind="error.status" read-only.bind="readOnly"></au-textbox>
+  </au-input-form>
+</template>

@@ -1,9 +1,15 @@
-<template>
-  <require from="./profile"></require>
-  <au-input-form title.bind="title" cancel.bind="cancel" edit.bind="edit" save.bind="save" delete.bind="delete">
+<template> 
+  <au-input-form title.bind="title" with.bind="context">
     <au-textbox label="Username" value.bind="data.username" error.bind="error.username" read-only.bind="(readOnly || isEdit)"></au-textbox>
     <au-password label="Password" value.bind="data.password" error.bind="error.password" read-only.bind="readOnly"></au-password>
-    <profile data.bind="data.profile" error.bind="error.profile" read-only.bind="readOnly"></profile>
+    <au-textbox label="Email" value.bind="data.email" error.bind="error.email" read-only.bind="readOnly"></au-textbox>
+
+
+    <au-textbox label="Firstname" value.bind="data.profile.firstname" error.bind="error.profile.firstname" read-only.bind="readOnly"></au-textbox>
+    <au-textbox label="Lastname" value.bind="data.profile.lastname" error.bind="error.profile.lastname" read-only.bind="readOnly"></au-textbox>
+    <au-datepicker label="Date Of Birth" value.bind="data.profile.dob" error.bind="error.profile.dob" read-only.bind="readOnly"></au-datepicker>
+    <au-dropdown label="Gender" value.bind="data.profile.gender" items.bind="genderOptions" read-only.bind="readOnly"></au-dropdown>
+    <!--<profile data.bind="data.profile" error.bind="error.profile" read-only.bind="readOnly"></profile>
 
     <au-collection items.bind="data.roles" errors.bind="error.roles" columns.bind="roleColumns" add.bind="addRole" remove.bind="removeRole"
       title="Roles" read-only.bind="readOnly" 
@@ -13,6 +19,6 @@
         <au-autocomplete label="search role: " select.delegate="roleSelected($event)" options.bind="controlOptions" loader.bind="roleLoader"
           placeholder="search role to assign" key="code" text="name" template="modules/user/templates/role"></au-autocomplete>
       </div>
-    </au-collection>
+    </au-collection>-->
   </au-input-form>
 </template>

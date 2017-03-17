@@ -1,34 +1,39 @@
-import { inject, Lazy } from 'aurelia-framework';
+import { bindable, inject } from "aurelia-framework";
+import { RestService } from "../../lib/rest-service";
 import { Router } from 'aurelia-router';
-import { Service } from './service';
+import parseLoopbackError from "../../lib/loopback-error-parser";
 
-
-@inject(Router, Service)
+@inject(Router)
 export class Create {
-  constructor(router, service) {
+  @bindable data;
+  @bindable error;
+
+  constructor(router) {
+    this.service = new RestService("core", "accounts");
     this.router = router;
-    this.service = service;
-    this.data = { profile: {}, roles: [] };
-    this.error = { profile: {}, roles: [] };
   }
 
-  activate(params) {
-
+  created(owner, self) {
+    this.data = {}
   }
 
-  get list() {
-    return (event) => this.router.navigateToRoute('list');
+  cancelCallback(event) {
+    this.__goToList();
   }
 
-  get save() {
-    return (event) => {
-      this.service.create(this.data)
-        .then(result => {
-          this.list();
-        })
-        .catch(e => {
-          this.error = e;
-        })
-    }
+  saveCallback(event) {
+    this.service.post(this.data, "accounts/coba")
+      .then(result => {
+        this.__goToList();
+      })
+      .catch(parseLoopbackError)
+      .then(error => {
+        this.error = error;
+      });
+  }
+
+  // Privates
+  __goToList() {
+    this.router.navigateToRoute('list');
   }
 }
