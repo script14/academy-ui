@@ -15,7 +15,7 @@ export class List {
   }
 
   columns = ["code", "name"];
-  contextMenu = ["Detail"];
+  contextMenu = ["Detail", "Manage"];
 
   loader = (info) => {
     var fields = this.columns.map(col => {
@@ -52,6 +52,9 @@ export class List {
     switch (arg.name) {
       case "Detail":
         this.__view(data.id);
+        break;
+      case "Manage":
+        this.router.navigateToRoute('manage', { id: data.id });
         break;
     }
   }

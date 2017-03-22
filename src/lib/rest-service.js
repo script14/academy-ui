@@ -17,7 +17,7 @@ export class RestService {
   _publish(promise) {
     this.eventAggregator.publish('httpRequest', promise);
   }
-
+  
   count(filter) {
     var __filter = Object.assign({}, filter);
     var promise = this.endpoint.find(`${this.resource}/count`, __filter);

@@ -36,7 +36,7 @@ export class DataForm {
 
     this.selectedIteration = await this.iterationService.get(iterationId, { filter: { include: "project" } });
     this.selectedAccount = await this.accountService.get(accountId);
-    this.selectedTask = await this.taskService.get(taskId);
+    this.selectedTask = await this.taskService.get(taskId, { filter: { include: ["project", "backlog"] } });
   }
 
   selectedIterationChanged(newValue, oldValue) {
@@ -56,6 +56,29 @@ export class DataForm {
     return (this.data.id || '').toString() !== '';
   }
 
+  get taskLoader() {
+    return (keyword) => {
+      var info = { search: keyword };
+      var loopbackFilter = createLoopbackFilterObject(info, ["code", "name"]);
+      loopbackFilter.filter.include = ["project", "tasks"]
+      return this.backlogService
+        .list(loopbackFilter)
+        .then(backlogs => {
+          var projected = backlogs.map(backlog => {
+            var tasks = backlog.tasks.map(task => {
+              task.project = backlog.project;
+              task.backlog = backlog;
+              return task;
+            })
+            return tasks;
+          });
+
+          projected = Array.prototype.concat.apply([], projected);
+          return projected;
+        });
+    }
+  }
+  
   get iterationLoader() {
     return (keyword) => {
       var info = { search: keyword };
@@ -86,29 +109,6 @@ export class DataForm {
       return this.accountService.list(loopbackFilter)
     }
   }
-  get taskLoader() {
-    return (keyword) => {
-      var info = { search: keyword };
-      var loopbackFilter = createLoopbackFilterObject(info, ["code", "name"]);
-      loopbackFilter.filter.include = {
-        relation: "tasks"
-      }
-      return this.backlogService
-        .list(loopbackFilter)
-        .then(backlogs => {
-          var projected = backlogs.map(backlog => {
-            var tasks = backlog.tasks.map(task => {
-              task.backlog = backlog;
-              return task;
-            })
-            return tasks;
-          });
-
-          projected = Array.prototype.concat.apply([], projected);
-          return projected;
-        });
-    }
-  }
 
   iterationFormatter(iteration) {
     if (!iteration || !iteration.project)
@@ -116,8 +116,8 @@ export class DataForm {
     return `${iteration.project.name}/iteration:${iteration.no}`
   }
   taskFormatter(task) {
-    if (!task || !task.backlog)
+    if (!task || !task.backlog || !task.project)
       return '';
-    return `${task.backlog.name}/task:${task.name}`
+    return `${task.project.name}/${task.backlog.name}/task: ${task.name}`
   }
 }

@@ -1,11 +1,11 @@
 <template>
   <au-input-form title.bind="title" with.bind="context">
 
-    <au-autocomplete value.bind="selectedIteration" label="iteration" read-only.bind="readOnly || isEdit" error.bind="error.iterationId"
+    <au-autocomplete value.bind="selectedIteration" label="iteration" read-only.bind="readOnly " error.bind="error.iterationId"
       loader.bind="iterationLoader" key="id" text.bind="iterationFormatter">
     </au-autocomplete>
 
-    <au-autocomplete value.bind="selectedAccount" label="account" read-only.bind="readOnly || isEdit" error.bind="error.accountId"
+    <au-autocomplete value.bind="selectedAccount" label="account" read-only.bind="readOnly" error.bind="error.accountId"
       loader.bind="accountLoader" key="id" text="username"></au-autocomplete>
 
     <au-autocomplete value.bind="selectedTask" label="task" read-only.bind="readOnly || isEdit" error.bind="error.taskId" loader.bind="taskLoader"
