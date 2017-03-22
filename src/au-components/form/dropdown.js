@@ -20,7 +20,7 @@ export class Dropdown {
     // console.log("dropdown.bind")
     // console.log(this.options)
   }
-  
+
   constructor(element) {
     this.component = element;
   }
@@ -38,7 +38,6 @@ export class Dropdown {
 
   _matcher = (option, current) => {
     var result = false;
-    debugger;
     if (!option || !current)
       return result;
 

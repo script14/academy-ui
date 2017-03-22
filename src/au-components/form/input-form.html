@@ -1,7 +1,9 @@
 <template>
   <form class="form-horizontal">
-    <h3 if.bind="title">${title}</h3>
-    <hr/>
+    <template if.bind="title">
+      <h3>${title}</h3>
+      <hr/>
+    </template>
     <slot>
 
     </slot>
