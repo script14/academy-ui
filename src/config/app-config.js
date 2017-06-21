@@ -16,7 +16,7 @@ export default {
   endpoints: {
     // auth: "https://academy-auth-webapi-pinkgorilla.c9users.io/v1/",
     // auth: "https://dl-auth-api-dev.mybluemix.net/v1/",
-    auth: "http://localhost:3000/",
-    core: "http://localhost:3000/api/"
+    auth: "https://academy-webapi-pinkgorilla.c9users.io/",
+    core: "https://academy-webapi-pinkgorilla.c9users.io/api/"
   }
 };

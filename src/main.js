@@ -15,8 +15,8 @@ export async function configure(aurelia) {
     .standardConfiguration()
     .plugin("aurelia-api", config => {
 
-      var auth = appConfig.endpoints.auth;//"https://dl-auth-api-dev.mybluemix.net/v1/"; 
-      var core = appConfig.endpoints.core;//"https://dl-core-api-dev.mybluemix.net/v1/";
+      var auth = appConfig.endpoints.auth; 
+      var core = appConfig.endpoints.core;
 
       config.registerEndpoint('auth', auth);
       config.registerEndpoint('core', core);
