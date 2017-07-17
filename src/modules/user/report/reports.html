@@ -1,0 +1,83 @@
+<template>
+  
+<div class="col-md-12">
+  <h1 class="page-header">Report <b> ${data.profile.firstname} ${data.profile.lastname} ${data.accountId}</b></h1>
+  
+
+
+   <h4 class="page-header">Iterations</h4>
+  <au-table
+    view-model.ref="iterrationTable"  
+    data.bind="iterationLoader" 
+    columns.bind="iterationColumns"
+    sortable.bind="true" 
+    page-size="25"
+    row-click.delegate="__iterationRowClickCallback($event)"
+   >
+   </au-table>
+
+
+   <h4>Assignment</h4>
+    <au-table 
+      view-model.ref="assignmentTable" 
+      data.bind="assignmentLoader" 
+      columns.bind="columns"
+      sortable.bind="true" 
+      page-size="25"
+      >
+    </au-table>
+     <au-table 
+      view-model.ref="userAssignmentTable"
+      data.bind="userAssignmentLoader" 
+      columns.bind="columns"
+      sortable.bind="true" 
+      page-size="25"
+      >
+    </au-table>
+    <au-table 
+      view-model.ref="userIterationAssignmentTable"
+      data.bind="userIterationAssignmentLoader" 
+      columns.bind="columns"
+      sortable.bind="true" 
+      page-size="25"
+      >
+    </au-table>
+    
+</div>
+
+
+<div class="col-md-12">
+  <div class ="col-md-12">  
+    <!--<div class="col-md-6">
+        <label>Waktu yang dibutuhkan menyelesaikan semua assignment</label>
+        <input 
+        type="text" disabled 
+        value.bind="sumElapsed" 
+        class="form-control" 
+        style="width: 250px;" />
+        </br>
+        <label>Waktu yang diberikan menyelesaikan semua assignment</label>
+        <input 
+        type="text" disabled 
+        value.bind="sumBudget" 
+        class="form-control" 
+        style="width: 250px;" />
+        
+        </br>
+        <button slot="toolbar" class="btn btn-success" click.delegate="calculateSum()">Calculate Elapsed</button>
+    </div>-->
+    <!--<div class="col-md-6">
+        <label>Pilih Iterasi (1 Iterasi = 1 sprint = 2 minggu)</label>
+        </br>
+        <input class="form-control"/>
+    </div>-->
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div if.bind="efisiensi" class="col-md-6">
+        <h2 type="text" disabled 
+        value.bind="efisiensi">${efisiensi}%</h2>
+    </div>
+</div>
+</template>
