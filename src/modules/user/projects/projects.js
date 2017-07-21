@@ -128,12 +128,9 @@ export class projects{
       });
     };
 
-
   getEfficiency(){
-    console.log("getting efficiency.");
     this.efficiencyCount = this.assignmentEfficiency.efficiency;
     //nilai efficiencyCount adalah array yang memiliki [nilai elapsed, nilai budget, nilai efisiensi]
-    console.log("done getting efficiency.")
   }
 
   // changeCallback(){
