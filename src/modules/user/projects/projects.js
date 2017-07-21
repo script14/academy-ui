@@ -15,7 +15,7 @@ export class projects{
     dataTaskPerAccount;
     @bindable dataProjectPerAccount;
     @bindable date;
-    @bindable efficiencyCount;
+    @bindable assignmentEfficiency;
 
         
 
@@ -40,8 +40,8 @@ export class projects{
         this.assignmentServ = new RestService("core", `reports/account/${id}/assignments`);
         this.totalAssignment = new RestService("core", `accounts/${id}/count/closedAssignment`);
 
-        // this.accountEfficiency = new RestService ("core", `accounts/${id}/count/efficiency`)
-        // this.efficiency = await this.accountEfficiency.get();
+        this.accountEfficiency = new RestService ("core", `reports/account/${id}/assignments/efficiency`)
+        this.assignmentEfficiency = await this.accountEfficiency.get();
 
        // this.viewAssignment = new RestService("core",`accounts/${id}/count/efficiency/${this.date}`);
         //this.viewAssignmentReport = await this.viewAssignment.get();
@@ -119,6 +119,7 @@ export class projects{
         var count = results[0].count;
         var data = results[1];
         console.log(data);
+
         this.getEfficiency();
         return {
           total: count,
@@ -129,11 +130,10 @@ export class projects{
 
 
   getEfficiency(){
-    console.log("wake up");
-    // this.efficiencyCount = this.efficiency.efficiency;
-    // console.log(this.efficiency.efficiency);
-    // console.log("wake up")
-    // return this.accountEfficiency.get();
+    console.log("getting efficiency.");
+    this.efficiencyCount = this.assignmentEfficiency.efficiency;
+    console.log(this.assignmentEfficiency.efficiency);
+    console.log("done getting efficiency.")
   }
 
   // changeCallback(){
