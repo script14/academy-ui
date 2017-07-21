@@ -1,0 +1,21 @@
+<template>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Tasks</h3>
+                <div class="row">
+                    <div class="col-md-12" repeat.for="item of tasks">
+                        <h4>Name : ${item.name}</h4>
+                        <h6>Status : ${item.status}</h6>
+                        <h6>date : ${item.date}</h6>
+                        <h6>type : ${item.type}</h6>
+                        <h6>Open : ${item.open}</h6>
+                        <h6>Close : ${item.close}</h6>
+                        <h6>Budget : ${item.budget}</h6>
+                        <h6>Actual : ${item.actual}</h6>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
