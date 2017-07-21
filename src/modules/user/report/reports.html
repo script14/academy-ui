@@ -1,83 +1,104 @@
 <template>
-  
-<div class="col-md-12">
-  <h1 class="page-header">Report <b> ${data.profile.firstname} ${data.profile.lastname} ${data.accountId}</b></h1>
-  
+     <required from="simple.css"></required>
+
+     <div class="wrapper">
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>              
+                    <small><h2>Report</h2></small>
+                    ${data.profile.firstname} ${data.profile.lastname}
+                </h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">     
+                    </div>
+                    <div class="box">            
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="form-group">
+                                <label>Date:</label>
+                                <au-datepicker type="date" ></au-datepicker>
+                                    <!-- /.input group -->
+                            </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="small-box bg-green">
+                            <!-- small box --><div class="inner">
+                            <h3><sup style="font-size: 20px">${efficiencyCount[2]}%</sup></h3>
+                            <p>Efisiensi</p>
+                            </div>
+                            <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <p class="small-box-footer">Total Budget : ${efficiencyCount[1]}<br/>Total Elapsed : ${efficiencyCount[0]}<br/></p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Assignment</h3>
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                 <au-table view-model.ref="AssignmentTable"
+                                    data.bind="assignmentLoader"
+                                    columns.bind="assignmentsColumns"
+                                    sortable.bind="true" 
+                                    page-size="25">                
+                                </au-table> 
 
 
-   <h4 class="page-header">Iterations</h4>
-      <au-table
-        view-model.ref="iterrationTable"  
-        data.bind="iterationLoader" 
-        columns.bind="iterationColumns"
-        sortable.bind="true" 
-        page-size="25"
-        row-click.delegate="__iterationRowClickCallback($event)"
-      >
-      </au-table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Assignments</h3>
+                                <!-- end of box header -->
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <div style="overflow-x:auto; ">
+                                    <div class="col-md-12">
+                                    <table>
+                                    <tr>
+                                        <th> AssignmentID</th>
+                                        <th> Name</th>
+                                        <th> Type</th>
+                                        <th> Date</th>
+                                        <th> Budget</th>
+                                        <th> Elapsed</th>
+                                        <th> Status </th>
+                                    </tr>
+                                    <tr>
+                                        <td> ajshajdhuf</td>
+                                        <td>closed</td>
+                                        <td> 5 </td>
+                                        <td> 6</td>
+                                        <td> 17/7/2017</td>
+                                        <td> sss</td>
+                                        <td> jsdhsjd</td>
+                                    </tr>
+                                    </table>
+                                    </div>
+                                </div> 
+                             <!-- end of box body                          -->
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+     </div>
 
 
-   <h4>Assignment</h4>
-    <au-table 
-      view-model.ref="assignmentTable" 
-      data.bind="assignmentLoader" 
-      columns.bind="columns"
-      sortable.bind="true" 
-      page-size="25"
-      >
-    </au-table>
-     <au-table 
-      view-model.ref="userAssignmentTable"
-      data.bind="userAssignmentLoader" 
-      columns.bind="columns"
-      sortable.bind="true" 
-      page-size="25"
-      >
-    </au-table>
-    <au-table 
-      view-model.ref="userIterationAssignmentTable"
-      data.bind="userIterationAssignmentLoader" 
-      columns.bind="columns"
-      sortable.bind="true" 
-      page-size="25"
-      >
-    </au-table>
-    
-</div>
 
 
-<div class="col-md-12">
-  <div class ="col-md-12">  
-    <!--<div class="col-md-6">
-        <label>Waktu yang dibutuhkan menyelesaikan semua assignment</label>
-        <input 
-        type="text" disabled 
-        value.bind="sumElapsed" 
-        class="form-control" 
-        style="width: 250px;" />
-        </br>
-        <label>Waktu yang diberikan menyelesaikan semua assignment</label>
-        <input 
-        type="text" disabled 
-        value.bind="sumBudget" 
-        class="form-control" 
-        style="width: 250px;" />
-        
-        </br>
-        <button slot="toolbar" class="btn btn-success" click.delegate="calculateSum()">Calculate Elapsed</button>
-    </div>-->
-    <!--<div class="col-md-6">
-        <label>Pilih Iterasi (1 Iterasi = 1 sprint = 2 minggu)</label>
-        </br>
-        <input class="form-control"/>
-    </div>-->
-  </div>
-</div>
-
-<div class="col-md-12">
-  <div if.bind="efisiensi" class="col-md-6">
-        <h2 type="text" disabled 
-        value.bind="efisiensi">${efisiensi}%</h2>
-    </div>
-</div>
 </template>
