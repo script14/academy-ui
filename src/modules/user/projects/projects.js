@@ -32,13 +32,13 @@ export class projects{
     async activate(params){
         var id = params.id;
         this.accountId = id;
-        this.data = await this.service.get(id, { filter: { include: "profile" } });
-
+        this.data = await this.service.get(id, { filter: { include: "profile" } }); 
         
-
         this.assignmentService = new RestService("core", `accounts/${id}/assignments`);
+        this.assignmentsData = await this.assignmentService.get({ filter: { include: "task" } }); 
+        
+        this.assignmentServ = new RestService("core", `reports/account/${id}/assignments`);
         this.totalAssignment = new RestService("core", `accounts/${id}/count/closedAssignment`);
-
 
         // this.accountEfficiency = new RestService ("core", `accounts/${id}/count/efficiency`)
         // this.efficiency = await this.accountEfficiency.get();
@@ -48,17 +48,39 @@ export class projects{
         
     }      
 
-    columns = ["code", "name"];
-    assignmentsColumns = ["status","budget","elapsed",
+    assignmentsColumns = [
+    {
+        field: "status",
+        title: "Status"
+    },
+    {
+      field: "task.name",
+      title: "Task Name"
+    },
+    {
+      field: "task.type",
+      title: "Task Type"
+    },  
+    {
+        field: "budget",
+        title: "Budget Time"
+    },
+    {
+        field: "elapsed",
+        title: "Elapsed Time"
+    },
     {
         field: "date", 
-        title: "date",
+        title: "Date",
         formatter: function (value, row, index) {
-        return value ? moment(value).format("DD-MMM-YYYY") : "-";
-    }}, 
-    "remark"];
+        return value ? moment(value).format("DD-MMM-YYYY") : "-";}
+    },
+    {
+        field: "remark",
+        title: "Remark"
+    }];
 
-     __dateFormatter = function (value, row, index) {
+    __dateFormatter = function (value, row, index) {
     return value ? moment(value).format("DD-MMM-YYYY") : "-";
     }
 
@@ -66,24 +88,24 @@ export class projects{
     "code",
     "name",
     {
-      field: "date", title: "date",
+      field: "date", title: "Date",
       formatter: this.__dateFormatter
     },
     "budget",
     "actual",
     {
-      field: "open", title: "open",
+      field: "open", title: "Open",
       formatter: this.__dateFormatter
     },
     {
-      field: "close", title: "close",
+      field: "close", title: "Close",
       formatter: this.__dateFormatter
     },
     "remark",
     "status"];
 
 
-    assignmentLoader = (info) => {
+  assignmentLoader = (info) => {
     var fields = this.assignmentsColumns.map(col => {
       if (typeof col === "string")
         return col;
@@ -91,13 +113,12 @@ export class projects{
         return col.field;
     })
     var loopbackFilter = createLoopbackFilterObject(info, fields)
-
     return Promise
-      .all([this.assignmentService.count(loopbackFilter.filter), this.assignmentService.list(loopbackFilter)])
+      .all([this.assignmentService.count(loopbackFilter.filter),this.assignmentsData])
       .then(results => {
         var count = results[0].count;
         var data = results[1];
-
+        console.log(data);
         this.getEfficiency();
         return {
           total: count,

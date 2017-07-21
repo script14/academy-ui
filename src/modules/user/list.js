@@ -3,6 +3,7 @@ import { Router } from 'aurelia-router';
 import { RestService } from "../../lib/rest-service";
 import createLoopbackFilterObject from "../../lib/loopback-filter-factory";
 import moment from "moment";
+import './simple.css';
 
 
 @inject(Router)

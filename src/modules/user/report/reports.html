@@ -6,15 +6,15 @@
 
 
    <h4 class="page-header">Iterations</h4>
-  <au-table
-    view-model.ref="iterrationTable"  
-    data.bind="iterationLoader" 
-    columns.bind="iterationColumns"
-    sortable.bind="true" 
-    page-size="25"
-    row-click.delegate="__iterationRowClickCallback($event)"
-   >
-   </au-table>
+      <au-table
+        view-model.ref="iterrationTable"  
+        data.bind="iterationLoader" 
+        columns.bind="iterationColumns"
+        sortable.bind="true" 
+        page-size="25"
+        row-click.delegate="__iterationRowClickCallback($event)"
+      >
+      </au-table>
 
 
    <h4>Assignment</h4>
