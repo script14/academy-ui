@@ -119,7 +119,6 @@ export class reports{
         var count = results[0].count;
         var data = results[1];
         console.log(data);
-
         this.getEfficiency();
         return {
           total: count,
