@@ -1,103 +1,108 @@
 <template>
-     <required from="simple.css"></required>
-     <div class="wrapper">
-        <div class="content-wrapper">
-            <section class="content-header">
-                <h1>              
-                    <small><h2>Report</h2></small>
-                    ${data.profile.firstname} ${data.profile.lastname}
-                </h1>
-            </section>
-            <section class="content">
-                <div class="row">
-                    <div class="col-md-6">     
-                    </div>
-                    <div class="box">            
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-xs-6">
-                        <div class="form-group">
-                                <label>Date:</label>
-                                <au-datepicker type="date" ></au-datepicker>
-                                    <!-- /.input group -->
-                            </div>
-                    </div>
-                    <div class="col-lg-3 col-xs-6">
-                    </div>
-                    <div class="col-lg-3 col-xs-6">
-                        <div class="small-box bg-green">
-                            <!-- small box --><div class="inner">
-                            <h3><sup style="font-size: 20px">${efficiencyCount[2]}%</sup></h3>
-                            <p>Efisiensi</p>
-                            </div>
-                            <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <p class="small-box-footer">Total Budget : ${efficiencyCount[1]}<br/>Total Elapsed : ${efficiencyCount[0]}<br/></p>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">Assignment</h3>
-                            </div>
-                            <div class="box-body table-responsive no-padding">
-                                 <au-table view-model.ref="AssignmentTable"
-                                    data.bind="assignmentLoader"
-                                    columns.bind="assignmentsColumns"
-                                    sortable.bind="true" 
-                                    page-size="25">                
-                                </au-table> 
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">Assignments</h3>
-                                <!-- end of box header -->
-                            </div>
-                            <div class="box-body table-responsive no-padding">
-                                <div style="overflow-x:auto; ">
-                                    <div class="col-md-12">
-                                    <table>
-                                    <tr>
-                                        <th> AssignmentID</th>
-                                        <th> Name</th>
-                                        <th> Type</th>
-                                        <th> Date</th>
-                                        <th> Budget</th>
-                                        <th> Elapsed</th>
-                                        <th> Status </th>
-                                    </tr>
-                                    <tr>
-                                        <td> ajshajdhuf</td>
-                                        <td>closed</td>
-                                        <td> 5 </td>
-                                        <td> 6</td>
-                                        <td> 17/7/2017</td>
-                                        <td> sss</td>
-                                        <td> jsdhsjd</td>
-                                    </tr>
-                                    </table>
+    <div class="wrapper">
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Report
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-desktop"></i> Report
+                            </li>
+                        </ol>
+                    
+                    <div class="panel panel-info">
+                    
+                            <div class="panel-body">
+                                <div class="col-lg-12">
+                                    <p style="font-size: 20px"><b style="font-size: 40px">${data.profile.firstname} ${data.profile.lastname}</b></p>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-tasks fa-5x">
+                                                    </i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <p style="font-size: 20px">Number of Assignments</p>
+                                                    <p style="font-size: 30px">${countAssignment}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a click.delegate="showAssignments()">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </div> 
-                             <!-- end of box body                          -->
+                                </div><!--end of panel success-->
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-balance-scale fa-5x">
+                                                    </i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <p style="font-size: 20px">Overall Work Efficiency </p>
+                                                    <p style="font-size: 30px">${assignmentEfficiency[0]} %</p>
+                                                    <p style="font-size: 15px">Total Budget Time<b> : ${assignmentEfficiency[1]}</b> hour(s)</p>
+                                                    <p style="font-size: 15px">Total Elapsed Time<b> : ${assignmentEfficiency[2]}</b> hour(s)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-folder-o fa-5x">
+                                                    </i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <p style="font-size: 20px">Number of Projects</p>
+                                                    <p style="font-size: 30px">12</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <a >
+                                                <div class="panel-footer">
+                                                    <span class="pull-left">View Details</span>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div> -->
+                                <!--end of panel info -->
                             </div>
-                            
-                        </div>
                     </div>
-                </div>
-            </section>
+
+                   
+                        <compose
+                            
+                            model.bind="dataku"
+                            view-model="./assignments"></compose>
+                    
+                    
+                            
+
+                    
+                    
+                </div>        
+            </div>
         </div>
-     </div>
-
-
-
-
+       
+    </div>
 </template>
