@@ -1,46 +1,57 @@
 <template>
 <!-- <div if.bind="assignmentData"> -->
     
-    <div class="col-lg-12" >
-         <div class="col-lg-4" if.bind="dateRangeStat">
+    <div class="col-lg-12" if.bind="dateRangeStat">
+        <h3><b>Time Range</b></h3>
+         <div class="col-lg-6">
+             <h4>Start Date :</h4>
             <au-datepicker value.bind="startDate"></au-datepicker>
             <hr>
+            <hr>
+             <h4>End Date   :  </h4> 
             <au-datepicker value.bind="endDate"></au-datepicker>
+            <hr><hr><p>
+             <div class="col-lg-6">
+             <button type="button" click.delegate="getAssignmentByDate()" class="btn btn-success">Search</button>            
+        </div></p>
          </div>
-        <div class="col-lg-4" if.bind="dateRangeStat">
-             <button type="button" click.delegate="getAssignmentByDate()" class="btn btn-default">Search</button>            
-        </div>
-        <div class="col-lg-4 col-md-6" if.bind="loadEffisiensi">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                            <div class="row">
-                                        <div class="col-xs-3">
-                                            <i class="fa fa-balance-scale fa-5x">
-                                            </i>
-                                        </div>
-                                        <div class="col-xs-9 text-right">
-                                            <p style="font-size: 20px">Overall Work Efficiency </p>
-                                            <p style="font-size: 30px">${efficiencyData[0]} %</p>
-                                            <p style="font-size: 15px">Total Budget Time<b> : ${efficiencyData[1]}</b> hour(s)</p>
-                                            <p style="font-size: 15px">Total Elapsed Time<b> : ${efficiencyData[2]}</b> hour(s)</p>
-                                        </div>
-                            </div>
+        
+
+        <div class="col-lg-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-balance-scale fa-5x">
+                            </i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <p style="font-size: 20px">Efficiency</p>
+                            <p style="font-size: 30px">${efficiencyData} %</p>
+                        </div>
                     </div>
                 </div>
+                <a >
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                       
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>                                <!--end of panel info-->
     </div>    
     
     <div class="col-lg-12" if.bind="data">
+        <button type="button" if.bind="loadStat" click.delegate="showDateRange()" class="btn btn-info">Sort Data by Date</button>  
             <au-table view-model.ref="assignmentTable"
                 data.bind="assignmentLoader"
                 columns.bind="assignmentsColumns"
                 sortable.bind="true" 
                 page-size="25">                
             </au-table> 
-        <button type="button" if.bind="loadStat" click.delegate="showDateRange()" class="btn btn-info">Sort Data by Date</button>            
+                   
     </div>
-
-    
 
                                
 

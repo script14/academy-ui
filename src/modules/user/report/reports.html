@@ -3,9 +3,9 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Report
-                        </h1>
+                        <div class="col-lg-12">
+                                    <p style="font-size: 20px"><b style="font-size: 40px">Report ${data.profile.firstname} ${data.profile.lastname}</b></p>
+                                </div>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
@@ -18,9 +18,7 @@
                     <div class="panel panel-info">
                     
                             <div class="panel-body">
-                                <div class="col-lg-12">
-                                    <p style="font-size: 20px"><b style="font-size: 40px">${data.profile.firstname} ${data.profile.lastname}</b></p>
-                                </div>
+                                
                                 <div class="col-lg-4 col-md-6">
                                     <div class="panel panel-success">
                                         <div class="panel-heading">
@@ -31,7 +29,7 @@
                                                 </div>
                                                 <div class="col-xs-9 text-right">
                                                     <p style="font-size: 20px">Number of Assignments</p>
-                                                    <p style="font-size: 30px">${countAssignment}</p>
+                                                    <p style="font-size: 30px">${totalClosedAssignment}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,7 +42,8 @@
                                         </a>
                                     </div>
                                 </div><!--end of panel success-->
-                                <div class="col-lg-4 col-md-6">
+                                
+                                <!-- <div class="col-lg-4 col-md-6">
                                     <div class="panel panel-info">
                                         <div class="panel-heading">
                                             <div class="row">
@@ -53,39 +52,69 @@
                                                     </i>
                                                 </div>
                                                 <div class="col-xs-9 text-right">
-                                                    <p style="font-size: 20px">Overall Work Efficiency </p>
-                                                    <p style="font-size: 30px">${assignmentEfficiency[0]} %</p>
-                                                    <p style="font-size: 15px">Total Budget Time<b> : ${assignmentEfficiency[1]}</b> hour(s)</p>
-                                                    <p style="font-size: 15px">Total Elapsed Time<b> : ${assignmentEfficiency[2]}</b> hour(s)</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <div class="row">
-                                                <div class="col-xs-3">
-                                                    <i class="fa fa-folder-o fa-5x">
-                                                    </i>
-                                                </div>
-                                                <div class="col-xs-9 text-right">
                                                     <p style="font-size: 20px">Number of Projects</p>
                                                     <p style="font-size: 30px">12</p>
                                                 </div>
                                             </div>
                                         </div>
-                                            <a >
-                                                <div class="panel-footer">
-                                                    <span class="pull-left">View Details</span>
-                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                    <div class="clearfix"></div>
+                                        <a >
+                                            <div class="panel-footer">
+                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div> -->
+                                <!--end of panel info-->
+
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-clock-o fa-5x">
+                                                    </i>
                                                 </div>
-                                            </a>
+                                                <div class="col-xs-9 text-right">
+                                                    <p style="font-size: 20px">Working Time total</p>
+                                                    <p style="font-size: 30px">${totalWorkTime} hour(s)</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div> -->
-                                <!--end of panel info -->
+                                        <a click.delegate="showWorkDetails()">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div><!--end of panel default-->
+
+                                 <div class="col-lg-4 col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-clock-o fa-5x">
+                                                    </i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <p style="font-size: 20px">Efficiency Total</p>
+                                                    <p style="font-size: 30px">${totalEfficiency} %</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a click.delegate="showWorkDetails()">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                     </div>
 

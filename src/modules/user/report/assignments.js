@@ -8,11 +8,11 @@ import moment from "moment";
 
 export class assignments {
 
-  @bindable efficiencyData;
+  @bindable assignmentsData;
+  @bindable assignmentEfficiency;
   @bindable countAssignments;
 
   @bindable loadStat;
-  @bindable loadEffisiensi;
   @bindable dateRangeStat;
 
   @bindable startDate;
@@ -20,12 +20,10 @@ export class assignments {
   
 constructor() {
   this.countAssignments;
-  this.efficiencyData =0 ;
-
+  this.efficiencyCount =0 ;
   this.data=[];
   this.loadStat = null;//showing the botton after table loaded
   this.dateRangeStat =null;//date range input for filter table
-  this.loadEffisiensi = null;
 
   this.startDate;
   this.endDate;
@@ -36,8 +34,8 @@ async activate(model) {
     this.data = model.datas;
     if(model.datas==null){
     }else{
-      this.assignmentService = new RestService("core", `accounts/${this.data.accountId}/assignments`);
-      this.assignmentsData = await this.assignmentService.get({ filter: { include: "task"}});
+      this.assignmentService = new RestService("core", `/reports/account/${model.datas.accountId}/assignments/get/closed`);
+      this.assignmentsData = await this.assignmentService.get();
 
       this.assignmentTable.refresh();
     }
@@ -95,8 +93,13 @@ async activate(model) {
     return Promise
       .all([null,this.assignmentsData])
       .then(results => {
+        // this.countAssignments = results[0];
         var data = results[1];
-        this.loadStat = 1 ;
+        console.log(data)
+        // this.getEfficiency();
+
+        if(this.loadStat===null) this.loadStat = 1; // mengisi variabel agar memunculkan button
+        else this.loadStat = null;
         return {
           data: data
         };
@@ -104,23 +107,22 @@ async activate(model) {
     }
   };
 
+  async getEfficiency(){
+    this.efficiencyCount = this.assignmentEfficiency.efficiency;
+    //nilai efficiencyCount adalah array yang memiliki [nilai elapsed, nilai budget, nilai efisiensi]
+  }
+
   showDateRange(){
     this.loadStat = null;
     this.dateRangeStat = 1;
-  }
-
-  async getEfficiencyByDate(){
-      this.loadEffisiensi = 1 ;//memunculkan efisiensi berdasarkan tanggal
-      this.efficiencyService = new RestService("core", `reports/account/${this.data.accountId}/${this.startDate}/to/${this.endDate}/efficiency`);     
-      this.efficiencyData = await this.efficiencyService.get();
-     
   }
 
   async getAssignmentByDate(){
       this.assignmentService = new RestService("core", `reports/account/${this.data.accountId}/${this.startDate}/to/${this.endDate}/assignments`);     
       this.assignmentsData = await this.assignmentService.get();
 
-      this.getEfficiencyByDate();
+      this.efficiencyService = new RestService("core", `reports/account/${this.data.accountId}/${this.startDate}/to/${this.endDate}/efficiency`);     
+      this.efficiencyData = await this.efficiencyService.get();
 
       this.assignmentTable.refresh();
 

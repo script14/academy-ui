@@ -13,6 +13,7 @@ export class reports{
 
     @bindable date_start;
     @bindable date_end;
+    
     @bindable assignmentEfficiency;
     @bindable countAssignment;
     @bindable totalWorkTime;
@@ -31,8 +32,8 @@ export class reports{
         this.efficiencyCount = 0;
         this.countAssignment = 0;
         this.totalWorkTime = 0;
-        this.accountId;
 
+        this.accountId;
         this.dataku = {};
     }
 
@@ -40,16 +41,17 @@ export class reports{
         var id = params.id;
         this.accountId = id;
         this.data = await this.service.get(id, { filter: { include: "profile" } });
-        
 
         this.countAllAssignments(this.accountId);
         this.countTotalWorkTime(this.accountId);
-        this.countEfficiencyAllAssignments(this.accountId);
-        
+        this.countTotalBudget(this.accountId);
+        this.countTotalEfficiency(this.accountId);
+        this.countClosedAssignment(this.accountId);
+         
     }  
       
     async countAllAssignments(accountId){
-        this.countAssignmentService = new RestService ("core", `reports/account/${this.accountId}/assignments/count`)
+        this.countAssignmentService = new RestService ("core",`reports/account/${this.accountId}/assignments/count`)
         this.countAssignment = await this.countAssignmentService.get();
     }
 
@@ -57,11 +59,21 @@ export class reports{
         this.countWorkTime = new RestService("core",`reports/account/${this.accountId}/assignments/elapsed`)
         this.totalWorkTime = await this.countWorkTime.get();
       }
-    
-      async countEfficiencyAllAssignments(accountId){
-        this.accountEfficiency = new RestService ("core", `reports/account/${this.accountId}/assignments/efficiency`)
-        this.assignmentEfficiency = await this.accountEfficiency.get();
-    }  
+
+    async countTotalBudget(accountId){
+        this.countBudgetTime = new RestService("core",`reports/account/${this.accountId}/assignments/budget`)
+        this.totalBudget = await this.countBudgetTime.get();
+    }
+
+    async countTotalEfficiency(accountId){
+        this.countEfficiency = new RestService("core",`reports/account/${this.accountId}/assignments/efficiency`)
+        this.totalEfficiency = await this.countEfficiency.get();
+    }
+
+    async countClosedAssignment(accountId){
+        this.countClosed = new RestService("core", `reports/account/${this.accountId}/assigments/closed`)
+        this.totalClosedAssignment = await this.countClosed.get();
+    }
 
   showAssignments() {
     var data = {"accountId": this.accountId}
