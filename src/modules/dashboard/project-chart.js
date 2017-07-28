@@ -57,4 +57,7 @@ export class ProjectChart {
         this.router.navigateToRoute('view', { id: id });
     }
     
+    create() {
+    this.router.navigateToRoute('create');
+  }
 }
