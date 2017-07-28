@@ -34,10 +34,13 @@ async activate(model) {
     this.data = model.datas;
     if(model.datas==null){
     }else{
-      this.assignmentService = new RestService("core", `/reports/account/${model.datas.accountId}/assignments/get/closed`);
-      this.assignmentsData = await this.assignmentService.get();
+      this.assignmentService = new RestService("core", `accounts/${model.datas.accountId}/assignments`);
+      this.assignmentsData = await this.assignmentService.get({filter: { include: "task",where:{status:'closed'} }});
+      this.openAssignmentData = await this.assignmentService.get({filter: { include: "task",where:{status:'open'} }});
 
+      this.openAssignmentTable.refresh();
       this.assignmentTable.refresh();
+
     }
 }
   assignmentsColumns = [
@@ -96,8 +99,35 @@ async activate(model) {
         // this.countAssignments = results[0];
         var data = results[1];
         console.log(data)
-        // this.getEfficiency();
+        if(this.loadStat===null) this.loadStat = 1; // mengisi variabel agar memunculkan button
+        else this.loadStat = null;
+        return {
+          data: data
+        };
+      });
+    }
+  };
 
+  //openAssignment
+  assignmentLoaderOpen = (info) => {
+    if(!this.openAssignmentData) {
+      return {
+        data: []
+      }
+    }
+    else {
+    var fields = this.assignmentsColumns.map(col => {
+      if (typeof col === "string")
+        return col;
+      else if (typeof col === "object" && col.field)
+        return col.field;
+    })
+    var loopbackFilter = createLoopbackFilterObject(info, fields)
+    return Promise
+      .all([null,this.openAssignmentData])
+      .then(results => {
+        var data = results[1];
+        console.log(data)
         if(this.loadStat===null) this.loadStat = 1; // mengisi variabel agar memunculkan button
         else this.loadStat = null;
         return {
