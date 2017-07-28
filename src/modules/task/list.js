@@ -13,6 +13,7 @@ export class List {
   __dateFormatter = function (value, row, index) {
     return value ? moment(value).format("DD-MMM-YYYY") : "-";
   }
+
   columns = [
     "code",
     "name",
@@ -32,7 +33,7 @@ export class List {
     },
     "remark",
     "status"];
-  contextMenu = ["Detail"];
+  contextMenu = ["Detail","Assignment(s)"];
 
   loader = (info) => {
     var fields = this.columns.map(col => {
@@ -59,6 +60,10 @@ export class List {
     this.router.navigateToRoute('view', { id: id });
   }
 
+  viewEmployee(id){
+    this.router.navigateToRoute('employee',{ id: id });
+  }
+
   create() {
     this.router.navigateToRoute('create');
   }
@@ -70,6 +75,9 @@ export class List {
       case "Detail":
         this.__view(data.id);
         break;
+      case "Assignment(s)":
+        this.viewEmployee(data.id);
+        break;  
     }
   }
 }
