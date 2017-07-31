@@ -5,7 +5,11 @@ export class Index {
         config.map([
             { route: '/', name: 'list', moduleId: './list', nav: true, title: 'Dashboard List' },
             { route: '/view/:id', name: 'view', moduleId: './view', title: 'View Project' },
-            { route: '/create', name: 'create', moduleId: './create', title: 'Create Project' },
+            { route: '/createProject', name: 'createProject', moduleId: './create-project', title: 'Create Project' },
+            { route: '/createTask', name: 'createTask', moduleId: './create-task', title: 'Create Task' },
+            { route: '/createAssignment', name: 'createAssignment', moduleId: './create-assignment', title: 'Create Assignment' },
+            { route: '/createBacklog', name: 'createBacklog', moduleId: './create-backlog', title: 'Create Backlog' },
+            
         ])
         
     }

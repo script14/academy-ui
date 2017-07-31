@@ -8,7 +8,7 @@ import moment from "moment";
 
 @containerless()
 @inject(Router)
-export class Create {
+export class CreateProject {
     @bindable data;
     @bindable error;
 
@@ -33,7 +33,7 @@ export class Create {
         })
     }
 
-    created(owner, self) {
+  created(owner, self) {
     this.data = {}
   }
 
